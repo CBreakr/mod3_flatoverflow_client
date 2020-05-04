@@ -3,6 +3,7 @@ console.log('hello form world')
 const questionForm = document.querySelector('#question-form')
 const titleInput = document.querySelector('#title-input')
 const contentInput = document.querySelector('#content-input')
+const questionView = document.querySelector('#question-view')
 
 const questionEndpoint = 'http://localhost:3000/questions'
 const headers = {
@@ -36,6 +37,21 @@ function postQuestion(question) {
     body: JSON.stringify(question)
   })
   .then(resp => resp.json())
-  .then(console.log)
+  .then(renderQuestion)
+
   questionForm.reset()
+}
+
+function renderQuestion(questionObj) {
+  const h1 = document.createElement('h1')
+  h1.innerText = questionObj.title
+
+  const p = document.createElement('p')
+  p.innerText = questionObj.text
+
+  const button = document.createElement('button')
+  button.dataset.id = questionObj.id
+  button.innerText = 'Add note'
+
+  questionView.append(h1, p, button)
 }
