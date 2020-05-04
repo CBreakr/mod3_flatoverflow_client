@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="user-registration" style="display: block;">
+    <h1>Create an account</h1>
+    <form id="user-registration-form">
+      <label>Username:</label><br>
+      <input type="text" id="username-input" name="name" placeholder="Enter username">
+      <br><br>
+      <label>Select your role:</label>
+      <br>
+      <select id="is_coach-dropdown">
+        <option id="is_coach-false-input" value="false">Student</option>
+        <option id="is_coach-true-input" value="true">Coach</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Create account">
+    </form>
+  </div>
+
+  <div id="user-login" style="display: block;">
+    <h1>Log in</h1>
+    <label>Username:</label>
+    <br>
+    <input type="text" name="name" placeholder="Enter username">
+    <br><br>
+    <button type="button">Log in</button>
+  </div>
+
+  <script type="text/javascript" src="scripts/index.js"></script>
+  <script type="text/javascript" src="scripts/registration_form.js"></script>
+</body>
+</html>
+
+<!-- <br>
+      <input type="radio" id="is_coach-false-input"name="is_coach" value="false">
+      <label>Student</label>
+      <br>
+      <input type="radio" id="is_coach-true-input" name="is_coach" value="true">
+      <label>Coach</label>
+      <br> -->
