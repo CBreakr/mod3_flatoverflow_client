@@ -2,24 +2,28 @@ console.log('hello log in world')
 
 const loginInput = document.querySelector('#username-login-input')
 const loginBtn = document.querySelector('#login-btn')
-let hasAccount = false
+let currentUser = null
 
 loginBtn.addEventListener('click', event => {
-  hasAccount = false
+  currentUser = null
 
   fetch(testingEndpoint)
   .then(resp => resp.json())
   .then(users => {
-    users.forEach(validateUser)
+    const match = users.filter(validateUser)
 
-    hasAccount ? alert(`Welcome back ${loginInput.value}`) : alert('you don\'t have an account')
+    if (match.length > 0) {
+      alert(`Welcome back ${loginInput.value}`)
+      currentUser = match[0]
+      console.log(currentUser)
+     } else { 
+       alert('you don\'t have an account')
+     }
 
     loginInput.value = ''
   })
 })
 
 function validateUser(userObj) {
-  if (loginInput.value === userObj.name) {
-    hasAccount = true
-  } 
+  return loginInput.value === userObj.name
 }
