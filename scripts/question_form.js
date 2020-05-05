@@ -9,12 +9,14 @@ const tagsInput = document.querySelector('#tags-input')
 
 const questionEndpoint = 'http://localhost:3000/questions'
 const tagsEndpoint = 'http://localhost:3000/tags'
+const questionTagsEndpoint = 'http://localhost:3000/question_tags'
 const headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
 let createdQuestion;
+let createdTags = []
 
 questionForm.addEventListener('submit', event => {
   event.preventDefault()
@@ -28,9 +30,11 @@ questionForm.addEventListener('submit', event => {
 
     postTags(parseTags(tagsInput.value))
     postQuestion(question)
+    console.log('above post question tags func')
+    setTimeout(postQuestionTags, 500)
 
   } else {
-    alert('need to be logged in to ask a question')
+    alert('You need to be logged in to ask a question')
     questionForm.reset()
   }
 
@@ -85,5 +89,28 @@ function postTags(tags) {
       headers,
       body: JSON.stringify(tag)
     })
+    .then(resp => resp.json())
+    .then(tag => {
+      createdTags.push(tag)
+    })
   })
+}
+
+function postQuestionTags() {
+  console.log('inside postQuestionTags function')
+  console.log(createdTags)
+  console.log(createdQuestion)
+  createdTags.forEach(tagObj => {
+    fetch(questionTagsEndpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        tag_id: tagObj.id,
+        question_id: createdQuestion.id
+      })
+    })
+    .then(resp => resp.json())
+    .then(console.log)
+  })
+  
 }
