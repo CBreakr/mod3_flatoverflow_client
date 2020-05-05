@@ -139,3 +139,9 @@ button:hover {
 .center_title{
     text-align: center;
 }
+
+.boxed {
+    margin: 4px;
+    padding: 4px;
+    border: 1px solid var(--border-dark);
+}

@@ -56,59 +56,57 @@
         </div>
       </div>
       <div class="bottom inner">
-        <div class="question-container">
+        <div class="question-container" style="display: none;">
           <ul id="question_list">
           </ul>
         </div>
+
+        <div class="columns boxed" id="user-registration" style="display: block;">
+          <h1>Create an account</h1>
+          <form id="user-registration-form">
+            <label>Username:</label>
+            <input type="text" id="username-input" name="name" placeholder="Enter username">
+            <br><br>
+            <label>Select your role:</label>
+            <select id="is_coach-dropdown">
+              <option id="is_coach-false-input" value="false">Student</option>
+              <option id="is_coach-true-input" value="true">Coach</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Create account">
+          </form>
+        </div>
+      
+        <div class="columns boxed" id="user-login" style="display: block;">
+          <h1>Log in</h1>
+          <label>Username:</label>
+          <input type="text" id="username-login-input" name="name" placeholder="Enter username">
+          <br><br>
+          <button id="login-btn" type="button">Log in</button>
+        </div>
+      
+        <div id="user-question" style="display: none;">
+          <h1>Ask a question</h1>
+          <form id="question-form">
+            <label>Title:</label>
+            <br>
+            <input type="text" id="title-input" name="title" placeholder="Enter question">
+            <br><br>
+            <label>Content:</label>
+            <br>
+            <textarea id="content-input" name="text" rows="4" cols="50" placeholder="Elaborate"></textarea>
+            <br><br>
+            <label>Tags:</label>
+            <br>
+            <textarea id="tags-input" name="tags" rows="4" cols="50" placeholder="Example: #awesome"></textarea>
+            <br><br>
+            <input type="submit" value="Post question">
+          </form>
+        </div>
+      
+        <div id="question-view" style="display:none;">
+        </div>
       </div>
-  </div>
-
-  <div class="container" id="user-registration" style="display: none;">
-    <h1>Create an account</h1>
-    <form id="user-registration-form">
-      <label>Username:</label><br>
-      <input type="text" id="username-input" name="name" placeholder="Enter username">
-      <br><br>
-      <label>Select your role:</label>
-      <br>
-      <select id="is_coach-dropdown">
-        <option id="is_coach-false-input" value="false">Student</option>
-        <option id="is_coach-true-input" value="true">Coach</option>
-      </select>
-      <br><br>
-      <input type="submit" value="Create account">
-    </form>
-  </div>
-
-  <div class="container" id="user-login" style="display: none;">
-    <h1>Log in</h1>
-    <label>Username:</label>
-    <br>
-    <input type="text" id="username-login-input" name="name" placeholder="Enter username">
-    <br><br>
-    <button id="login-btn" type="button">Log in</button>
-  </div>
-
-  <div id="user-question">
-    <h1>Ask a question</h1>
-    <form id="question-form">
-      <label>Title:</label>
-      <br>
-      <input type="text" id="title-input" name="title" placeholder="Enter question">
-      <br><br>
-      <label>Content:</label>
-      <br>
-      <textarea id="content-input" name="text" rows="4" cols="50" placeholder="Elaborate"></textarea>
-      <br><br>
-      <label>Tags:</label>
-      <br>
-      <textarea id="tags-input" name="tags" rows="4" cols="50" placeholder="Example: #awesome"></textarea>
-      <br><br>
-      <input type="submit" value="Post question">
-    </form>
-  </div>
-
-  <div id="question-view">
   </div>
 
   <script type="text/javascript" src="scripts/index.js"></script>
