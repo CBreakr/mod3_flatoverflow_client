@@ -117,7 +117,7 @@ li {
     background-color: var(--primary);
 }
 
-.question-container {
+#question-display {
     margin-top: 10px;
 }
 
@@ -141,7 +141,15 @@ button:hover {
 }
 
 .boxed {
-    margin: 4px;
-    padding: 4px;
+    margin: 8px;
+    padding: 8px;
     border: 1px solid var(--border-dark);
+}
+
+#disclaimer {
+    padding-top: 16px;
+}
+
+#disclaimer p {
+    margin-bottom: 30px;
 }
