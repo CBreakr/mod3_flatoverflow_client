@@ -30,14 +30,12 @@ questionForm.addEventListener('submit', event => {
 
     postTags(parseTags(tagsInput.value))
     postQuestion(question)
-    console.log('above post question tags func')
     setTimeout(postQuestionTags, 500)
 
   } else {
     alert('You need to be logged in to ask a question')
     questionForm.reset()
   }
-
 })
 
 function postQuestion(question) {
@@ -97,9 +95,6 @@ function postTags(tags) {
 }
 
 function postQuestionTags() {
-  console.log('inside postQuestionTags function')
-  console.log(createdTags)
-  console.log(createdQuestion)
   createdTags.forEach(tagObj => {
     fetch(questionTagsEndpoint, {
       method: 'POST',
@@ -112,5 +107,4 @@ function postQuestionTags() {
     .then(resp => resp.json())
     .then(console.log)
   })
-  
 }
