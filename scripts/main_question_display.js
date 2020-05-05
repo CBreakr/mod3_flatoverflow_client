@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
     questionUL.addEventListener("click", showPreview);
 
-    addButton.addEventListener("click", addMockQuestion);
+    addButton.addEventListener("click", showQuestionFormView);
 
     document.querySelector(".button_bar").addEventListener("click", filterClick);
 
