@@ -36,6 +36,8 @@ function getSingleQuestionWithCallback(id, callback){
 }
 
 function renderAllQuestions(data){
+    console.log("render");
+    questionUL.innerHTML = "";
     data.forEach(question => {
         appendQuestion(question);
     });
@@ -129,6 +131,15 @@ function filterClick(event){
 
     if(event.target.dataset.filter_type) {
         fetch(`${questionURL}/filter/${event.target.dataset.filter_type}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            renderAllQuestions(data);
+        })
+        .catch(err => console.log("error", err));
+    }
+    else if(event.target.dataset.user_id){
+        fetch(`${questionURL}/myfilter/${event.target.dataset.user_id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
