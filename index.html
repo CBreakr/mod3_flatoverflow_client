@@ -3,11 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="styles/main.css" />
+  <title>FlatOverflow</title>
 </head>
 
 <body>
-  <div id="user-registration" style="display: block;">
+  <div id="left" class="column is-one-fifth">
+    <div class="top_header top-left primary">
+      <div class="icon-container">
+        <svg class="flat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+          <style>.st0{fill:#ddd}.st1{fill:#fff}</style>
+          <path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z"/>
+          <path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7"/>
+        </svg>
+        <span>flat <b>overflow</b></span>
+      </div>
+    </div>
+    <div class="bottom inner left-bottom">
+      <div id= "sidebar">
+        SIDEBAR<br />
+        SIDEBAR<br />
+        SIDEBAR<br />
+        SIDEBAR<br />
+        SIDEBAR<br />
+        SIDEBAR  
+      </div>
+    </div>
+  </div>
+  <div id="right" class="column is-four-fifths">
+      <div class="top-right">
+        <div class="top_header primary">
+        </div>
+        <div class="top-content">
+          <h1 class="title is_2 center_title">Questions</h1>
+          
+          <div class="button_bar">
+            <span>
+              <button id="today_filter_question_button" data-filter_type="Today">Today</button> 
+              <button id="new_filter_question_button" data-filter_type="New">New</button> 
+              <button id="unanswered_filter_question_button" data-filter_type="Unanswered">Unanswered</button> 
+              <button id="popular_filter_question_button" data-filter_type="Popular">Popular</button>
+            </span>
+            <span>
+              <button id="mine_filter_question_button" data-filter_type="Mine">Mine</button> 
+            </span>
+            <span>
+              <button id="add_question_button">Create Question</button> 
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="bottom inner">
+        <div class="question-container">
+          <ul id="question_list">
+          </ul>
+        </div>
+      </div>
+  </div>
+
+  <div class="container" id="user-registration" style="display: none;">
     <h1>Create an account</h1>
     <form id="user-registration-form">
       <label>Username:</label><br>
@@ -24,7 +80,7 @@
     </form>
   </div>
 
-  <div id="user-login" style="display: block;">
+  <div class="container" id="user-login" style="display: none;">
     <h1>Log in</h1>
     <label>Username:</label>
     <br>
@@ -36,6 +92,7 @@
   <script type="text/javascript" src="scripts/index.js"></script>
   <script type="text/javascript" src="scripts/registration_form.js"></script>
   <script type="text/javascript" src="scripts/login.js"></script>
+  <script type="text/javascript" src="scripts/main_question_display.js"></script>
 </body>
 </html>
 
