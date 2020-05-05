@@ -105,7 +105,5 @@ function postQuestionTags() {
         question_id: createdQuestion.id
       })
     })
-    .then(resp => resp.json())
-    .then(console.log)
   })
 }
