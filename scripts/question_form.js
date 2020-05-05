@@ -30,7 +30,7 @@ questionForm.addEventListener('submit', event => {
 
     postTags(parseTags(tagsInput.value))
     postQuestion(question)
-    setTimeout(postQuestionTags, 500)
+    setTimeout(postQuestionTags, 250)
 
   } else {
     alert('You need to be logged in to ask a question')
@@ -63,6 +63,7 @@ function renderQuestion(questionObj) {
   button.dataset.id = questionObj.id
   button.innerText = 'Add note'
 
+  questionView.innerHTML = ''
   questionView.append(h1, p, button)
 }
 
