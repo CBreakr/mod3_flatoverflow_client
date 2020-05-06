@@ -24,7 +24,7 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
-  questionDetail.comments.forEach(comment => {
+  questionDetail.reverse_comments.forEach(comment => {
     let commentPTag = document.createElement('p')
     commentPTag.innerText = `Comment created at ${comment.created_at}: ${comment.text}`
     questionDiv.append(commentPTag)

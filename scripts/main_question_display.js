@@ -9,11 +9,15 @@ const questionURL = "http://localhost:3000/questions";
 
 document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.getElementById("add_question_button");
+    const back_to_questions = document.getElementById("back_to_questions");
+
     questionUL = document.getElementById("question_list");
 
     questionUL.addEventListener("click", questionEventHandler);
 
     addButton.addEventListener("click", showQuestionFormView);
+
+    back_to_questions.addEventListener("click", showMainQuestionView);
 });
 
 //
@@ -97,10 +101,8 @@ function createPreviewQuestionElement(question){
     return replace;
 }
 
-<<<<<<< HEAD
 //
 //
-=======
 function viewQuestionButton(question) {
     if (currentUser && question.user_id === currentUser.id) {
         return `<button class="view" data-id="${question.id}">Edit Question</button>`
@@ -118,17 +120,14 @@ function currentUserAnswerButton(question) {
     return ''
 }
 
->>>>>>> e9ef92f06c82e90acce745c02169e75596589ed2
 function showTagDisplay(tags){
     let str = "";
     tags.forEach(tag => str += `<span class="question_tag">#${tag.text}</span>`)
     return str;
 }
 
-<<<<<<< HEAD
 //
 //
-=======
 function questionEventHandler(event){
     if(event.target.className.indexOf("view") > -1){
         viewQuestion(event);
@@ -138,7 +137,6 @@ function questionEventHandler(event){
     }
 }
 
->>>>>>> e9ef92f06c82e90acce745c02169e75596589ed2
 function showPreview(event){
     if(event.target.className.indexOf("basic") > -1){
         const id = event.target.dataset.id;

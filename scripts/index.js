@@ -15,6 +15,7 @@ function showInitialView(){
     const user_container = document.getElementById("user_container");
     const question_container = document.getElementById("question_container");
     const button_bar = document.getElementById("button_bar");
+    const back_to_questions = document.getElementById("back_to_questions");
     
     disclaimer.style.display = "block";
     sidebar.style.display = "none";
@@ -31,6 +32,8 @@ function showMainQuestionView(){
     // show sidebar content
     // show question header
     // show question list
+
+    getQuestions();
 
     const disclaimer = document.getElementById("disclaimer");
     const sidebar = document.getElementById("sidebar");
@@ -52,6 +55,7 @@ function showMainQuestionView(){
     question_form.style.display = "none";
     question_detail.style.display = "none";
     button_bar.style.display = "flex";
+    back_to_questions.style.display = "none";
 }
 
 function showQuestionFormView(){
@@ -66,6 +70,7 @@ function showQuestionFormView(){
     question_form.style.display = "block";
     question_detail.style.display = "none";
     button_bar.style.display = "none";
+    back_to_questions.style.display = "inline";
 
     // calling it here for now for testing purposes
     fillTagsDataList();
@@ -83,6 +88,7 @@ function showQuestionDetailView(){
     question_form.style.display = "none";
     question_detail.style.display = "block";
     button_bar.style.display = "none";
+    back_to_questions.style.display = "inline";
 }
 
 document.addEventListener("DOMContentLoaded", event => {

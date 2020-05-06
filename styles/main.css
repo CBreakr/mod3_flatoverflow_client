@@ -171,3 +171,7 @@ button:hover {
 .delete-tag:hover {
     background-color: coral;
 }
+
+#back_to_questions:hover {
+    color: var(--primary);
+}
