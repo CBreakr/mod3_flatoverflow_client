@@ -2,6 +2,8 @@ console.log('main_question_display.js loaded')
 
 let questionUL = null;
 
+let currentPreview = null;
+
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
@@ -76,9 +78,15 @@ function appendQuestion(question){
 //
 function createBasicQuestionElement(question){
     const div = document.createElement("div");
-    div.className = "question basic";
+    div.className = "question basic";    
     div.dataset.id = question.id;
-    div.innerText = question.title;
+    const upvotes = question.upvotes || question.question_upvotes.length;
+    const username = question.username || question.user.name;
+    div.innerHTML = `
+        ${upvotes}^ &nbsp; &nbsp;
+        ${question.title} &nbsp; - &nbsp; ${username} &nbsp; &nbsp
+        ${showTagDisplay(question.tags)}
+    `;
     return div;
 }
 
@@ -88,6 +96,10 @@ function createPreviewQuestionElement(question){
     const replace = document.createElement("div");
     replace.className = "preview";
     replace.dataset.id = question.id;
+    replace.dataset.title = question.title;
+    replace.dataset.tags = JSON.stringify(question.tags);
+    replace.dataset.upvotes = question.question_upvotes.length;   
+    replace.dataset.username = question.user.name; 
     replace.innerHTML = `
         <span class="title is-4">${question.title}</span>
         &nbsp;-&nbsp;
@@ -98,6 +110,8 @@ function createPreviewQuestionElement(question){
         <p>${showTagDisplay(question.tags)}</p>
         <p>${question.question_upvotes.length} ^ &nbsp; &nbsp; ${question.reverse_comments.length} comments</p>
     `;
+
+    currentPreview = replace;
     return replace;
 }
 
@@ -141,6 +155,10 @@ function showPreview(event){
     if(event.target.className.indexOf("basic") > -1){
         const id = event.target.dataset.id;
         getSingleQuestionWithCallback(id, (question) => {
+            if(currentPreview && currentPreview.parentNode){
+                replaceExistingPreview();
+            }
+            currentPreview = null;
             const questionPreview = createPreviewQuestionElement(question);    
             event.target.after(questionPreview);
             event.target.remove();
@@ -149,4 +167,20 @@ function showPreview(event){
     else{
         console.log("not the basic element");
     }
+}
+
+function replaceExistingPreview(){
+    const tags = JSON.parse(currentPreview.dataset.tags);    
+    const q = {
+        id: currentPreview.dataset.id,
+        title: currentPreview.dataset.title,
+        upvotes: currentPreview.dataset.upvotes,
+        username: currentPreview.dataset.username,
+        tags
+    };
+
+    const replace = createBasicQuestionElement(q);
+    currentPreview.after(replace);
+    currentPreview.remove();
+    currentPreview = null;
 }
