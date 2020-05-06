@@ -45,6 +45,7 @@ function getSingleQuestionWithCallback(id, callback){
     .then(res => res.json())
     .then(data => {
         console.log("can we see the data", data);
+        currentQuestion = data
         callback(data);
     })
     .catch(err => console.log("error", err));
@@ -167,6 +168,9 @@ function showTagDisplay(tags){
 //
 function questionEventHandler(event){
     if(event.target.className.indexOf("view") > -1){
+        //resets clicks on upvote button
+        upvoteClickTracker = 0
+        console.log('inside questionEventHandler')
         viewQuestion(event);
     }
     else if (event.target.className.indexOf("basic") > -1){

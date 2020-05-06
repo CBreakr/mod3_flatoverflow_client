@@ -20,7 +20,10 @@ loginBtn.addEventListener('click', event => {
 
     if (match) {
       currentUser = match
-      // showMainQuestionView()
+      
+      //used to keep track of user for upvote clicks
+      userTracker.user = match
+
       getQuestions()
       console.log(currentUser)
     } else { 
