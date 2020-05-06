@@ -37,13 +37,14 @@ function displayQuestionDetails(questionDetail){
   upvoteCounterPTag.innerText = `upvote: ${questionDetail.question_upvotes.length}`
   upvoteBtn.innerText = '^'
 
+  //only author of the question in view can add an update note
   if (currentQuestion.user_id === currentUser.id) {
     let addNoteBtn = document.createElement('button')
     addNoteBtn.id = 'add-update-note-btn'
     addNoteBtn.innerText = 'Add Update Note'
     questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
   }
-  
+
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);
 }
