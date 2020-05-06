@@ -4,6 +4,8 @@ let questionUL = null;
 
 let currentPreview = null;
 
+let currentQuestion = null;
+
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
@@ -25,6 +27,8 @@ document.addEventListener("DOMContentLoaded", event => {
 //
 //
 function getQuestions(callback){
+    currentQuestion = null;
+
     fetch(questionURL)
     .then(res => res.json())
     .then(data => {
@@ -81,12 +85,16 @@ function createBasicQuestionElement(question){
     cleanQuestion(question);
 
     const div = document.createElement("div");
-    div.className = "question basic";    
+    div.className = "question basic";
+    if(question.is_answered){
+        div.className += " answer";
+    }
+
     div.dataset.id = question.id;
     const upvotes = question.upvotes || question.question_upvotes.length;
     const username = question.username || question.user.name;
     div.innerHTML = `
-        ${upvotes}^ &nbsp; &nbsp;
+        <span class="upvote-boxed">${upvotes} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp;
         ${question.title} &nbsp; - &nbsp; ${username} &nbsp; &nbsp
         ${showTagDisplay(question.tags)}
     `;
@@ -101,6 +109,10 @@ function createPreviewQuestionElement(question){
 
     const replace = document.createElement("div");
     replace.className = "preview";
+    if(question.is_answered){
+        replace.className += " answer";
+    }
+
     replace.dataset.id = question.id;
     replace.dataset.title = question.title;
     replace.dataset.tags = JSON.stringify(question.tags);
@@ -114,7 +126,7 @@ function createPreviewQuestionElement(question){
         <br />
         <p class="title is-6">${question.text}</p>
         <p>${showTagDisplay(question.tags)}</p>
-        <p>${question.question_upvotes.length} ^ &nbsp; &nbsp; ${question.reverse_comments.length} comments</p>
+        <p><span class="upvote-boxed">${question.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp; ${question.reverse_comments.length} comments</p>
     `;
 
     currentPreview = replace;
@@ -124,6 +136,8 @@ function createPreviewQuestionElement(question){
 //
 //
 function viewQuestionButton(question) {
+    currentQuestion = question;
+
     if (currentUser && question.user_id === currentUser.id) {
         return `<button class="view" data-id="${question.id}">Edit Question</button>`
     }

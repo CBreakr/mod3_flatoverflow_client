@@ -8,7 +8,7 @@ function viewQuestion(event){
 function displayQuestionDetails(questionDetail){
   cleanQuestion(questionDetail);
   
-  let questionDiv = document.querySelector('#question-view')
+  let questionDiv = document.querySelector('#question-details')
 
   questionDiv.innerHTML = `
     <h1>Title: ${questionDetail.title}</h1>
@@ -26,11 +26,11 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
-  questionDetail.reverse_comments.forEach(comment => {
-    let commentPTag = document.createElement('p')
-    commentPTag.innerText = `Comment created at ${comment.created_at}: ${comment.text}`
-    questionDiv.append(commentPTag)
-  })
+  // questionDetail.reverse_comments.forEach(comment => {
+  //   let commentPTag = document.createElement('p')
+  //   commentPTag.innerText = `Comment created at ${comment.created_at}: ${comment.text}`
+  //   questionDiv.append(commentPTag)
+  // })
 
   let addNoteBtn = document.createElement('button')
   let br = document.createElement('br')
@@ -43,6 +43,7 @@ function displayQuestionDetails(questionDetail){
   questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
 
   showQuestionDetailView()
+  renderAllComments(questionDetail.reverse_comments);
 }
 
 function answerQuestion(event) {

@@ -130,8 +130,9 @@ li {
 }
 
 button:hover {
-    background-color: var(--main-hover);
+    background-color: var(--primary);
     border-radius: 4px;
+    /* color: white; */
 }
 
 .left-bottom {
@@ -172,6 +173,38 @@ button:hover {
     background-color: coral;
 }
 
+#back_to_questions{
+    transition: 0.1s;
+}
+
 #back_to_questions:hover {
     color: var(--primary);
+}
+
+.answer_action{
+    color: #ddd;
+}
+
+.answer_action:hover {
+    color: #8c8;
+}
+
+.answer_mark{
+    color: green;
+}
+
+.answer {
+    background-color: #dfd;
+}
+
+.upvote-boxed {
+    padding: 2px;
+}
+
+.comment-upvote:hover {
+    color: orange;
+}
+
+.question-upvote:hover {
+    color: orange;
 }

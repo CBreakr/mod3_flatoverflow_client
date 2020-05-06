@@ -2,10 +2,10 @@
 function escapeHtml(unsafe) {
     if(unsafe){
         return unsafe
-        .replace(/</g, " &lt; ")
-        .replace(/>/g, " &gt; ")
-        .replace(/"/g, " &quot; ")
-        .replace(/'/g, " &#039; ");
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
         //         .replace(/&/g, " &amp; ")
     }
     return unsafe;
