@@ -77,6 +77,8 @@ function appendQuestion(question){
 //
 //
 function createBasicQuestionElement(question){
+    cleanQuestion(question);
+
     const div = document.createElement("div");
     div.className = "question basic";    
     div.dataset.id = question.id;
@@ -87,12 +89,15 @@ function createBasicQuestionElement(question){
         ${question.title} &nbsp; - &nbsp; ${username} &nbsp; &nbsp
         ${showTagDisplay(question.tags)}
     `;
+    console.log(div.innerHTML);
     return div;
 }
 
 //
 //
 function createPreviewQuestionElement(question){
+    cleanQuestion(question);
+
     const replace = document.createElement("div");
     replace.className = "preview";
     replace.dataset.id = question.id;
@@ -136,7 +141,10 @@ function currentUserAnswerButton(question) {
 
 function showTagDisplay(tags){
     let str = "";
-    tags.forEach(tag => str += `<span class="question_tag">#${tag.text}</span>`)
+    tags.forEach(tag => {
+        cleanTag(tag);
+        str += `<span class="question_tag">#${tag.text}</span>`
+    });
     return str;
 }
 

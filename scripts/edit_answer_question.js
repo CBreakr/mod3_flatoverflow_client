@@ -6,6 +6,8 @@ function viewQuestion(event){
 }
 
 function displayQuestionDetails(questionDetail){
+  cleanQuestion(questionDetail);
+  
   let questionDiv = document.querySelector('#question-view')
 
   questionDiv.innerHTML = `

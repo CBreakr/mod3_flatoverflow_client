@@ -29,8 +29,8 @@ questionForm.addEventListener('submit', event => {
   if (currentUser) {
     const question = {
       user_id: currentUser.id,
-      title: titleInput.value,
-      text: contentInput.value
+      title: escapeHtml(titleInput.value),
+      text: escapeHtml(contentInput.value)
     }
 
     // postTags(parseTags(tagsInput.value))
@@ -66,6 +66,7 @@ tagInput.addEventListener("keypress", event => {
 });
 
 function postQuestion(question) {
+  cleanQuestion(question);
   fetch(questionEndpoint, {
     method: 'POST',
     headers,
@@ -80,6 +81,8 @@ function postQuestion(question) {
 }
 
 function renderQuestion(questionObj) {
+  cleanQuestion(createdQuestion);
+
   const h1 = document.createElement('h1')
   h1.innerText = questionObj.title
 
@@ -140,7 +143,7 @@ function postQuestionTags() {
 //
 //
 function moveTagToDisplay(){
-  const tagVal = tagInput.value;
+  const tagVal = escapeHtml(tagInput.value);
   if(tagVal){
     const id = findIdOfTag(tagVal);
 
