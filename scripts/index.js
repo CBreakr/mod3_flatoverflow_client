@@ -33,7 +33,7 @@ function showMainQuestionView(){
     // show question header
     // show question list
 
-    getQuestions();
+    // getQuestions();
 
     const disclaimer = document.getElementById("disclaimer");
     const sidebar = document.getElementById("sidebar");

@@ -19,16 +19,17 @@ document.addEventListener("DOMContentLoaded", event => {
 
     addButton.addEventListener("click", showQuestionFormView);
 
-    back_to_questions.addEventListener("click", showMainQuestionView);
+    back_to_questions.addEventListener("click", getQuestions);
 });
 
 //
 //
-function getQuestions(){
+function getQuestions(callback){
     fetch(questionURL)
     .then(res => res.json())
     .then(data => {
         renderAllQuestions(data)
+        showMainQuestionView();
     })
     .catch(err => console.log("error", err));
 }

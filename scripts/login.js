@@ -20,12 +20,12 @@ loginBtn.addEventListener('click', event => {
 
     if (match) {
       currentUser = match
-      showMainQuestionView()
+      // showMainQuestionView()
       getQuestions()
       console.log(currentUser)
-     } else { 
-       alert('you don\'t have an account')
-     }
+    } else { 
+      alert('you don\'t have an account')
+    }
 
     loginInput.value = ''
   })
