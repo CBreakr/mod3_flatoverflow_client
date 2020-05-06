@@ -44,9 +44,13 @@ questionForm.addEventListener('submit', event => {
 })
 
 questionForm.addEventListener("click", event => {
-  if(event.target.className.indexOf("delete-tag") > -1){
-    console.log("delete tag");
-    event.target.parentNode.remove();
+  const classes = event.target.className;
+  if(typeof classes !== "string"){
+    const parent = event.target.parentNode;
+    if(parent.className.indexOf("delete-tag") > -1){
+      console.log("delete tag");
+      parent.parentNode.remove();
+    }
   }
   else if(event.target.id === "add_tag"){
     console.log("ADD TAG!");
@@ -157,7 +161,7 @@ function moveTagToDisplay(){
       valueSpan.innerText = tagVal;
   
       const deleteSpan = document.createElement("span");
-      deleteSpan.innerText = "x";
+      deleteSpan.innerHTML = `<i class="far fa-times-circle"></i>`;
       deleteSpan.className = "delete-tag";
   
       tagSpan.append(valueSpan);
