@@ -54,6 +54,7 @@ function answerQuestion(event) {
   getSingleQuestionWithCallback(id, displayQuestionDetails);
 }
 
+//listens for submission of update note for question
 questionDiv.addEventListener('click', event => {
   if (event.target.innerText === 'Add Update Note') {
     let addNoteBtn = document.getElementById('add-update-note-btn')
@@ -71,6 +72,14 @@ questionDiv.addEventListener('click', event => {
     textarea.value = ''
   
     renderUpdateNote(updateNoteValue)
+
+    //toggles update note form display to off upon submission of note
+    //toggles the add update note button to on upon submission of note
+    let updateNoteDiv = document.getElementById('update-note-form')
+    let addNoteBtn = document.getElementById('add-update-note-btn')
+    updateNoteDiv.style.display = 'none'
+    addNoteBtn.style.display = 'block'
+
   }
 })
 
