@@ -170,7 +170,6 @@ function questionEventHandler(event){
     if(event.target.className.indexOf("view") > -1){
         //resets clicks on upvote button
         upvoteClickTracker = 0
-        console.log('inside questionEventHandler')
         viewQuestion(event);
     }
     else if (event.target.className.indexOf("basic") > -1){

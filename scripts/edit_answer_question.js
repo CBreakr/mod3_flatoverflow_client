@@ -10,6 +10,8 @@ function viewQuestion(event){
 function displayQuestionDetails(questionDetail){
   cleanQuestion(questionDetail);
 
+  console.log(questionDetail)
+
   questionDiv.innerHTML = `
     <h1>Title: ${questionDetail.title}</h1>
     <p id="question-content-text">Content: ${questionDetail.text}</p>
@@ -26,8 +28,6 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
-  let addNoteBtn = document.createElement('button')
-  addNoteBtn.id = 'add-update-note-btn'
   let br = document.createElement('br')
   let upvoteBtn = document.createElement('button')
   upvoteBtn.id = 'upvote-btn'
@@ -37,9 +37,13 @@ function displayQuestionDetails(questionDetail){
   upvoteCounterPTag.innerText = `upvote: ${questionDetail.question_upvotes.length}`
   upvoteBtn.innerText = '^'
 
-  addNoteBtn.innerText = 'Add Update Note'
-  questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
-
+  if (currentQuestion.user_id === currentUser.id) {
+    let addNoteBtn = document.createElement('button')
+    addNoteBtn.id = 'add-update-note-btn'
+    addNoteBtn.innerText = 'Add Update Note'
+    questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
+  }
+  
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);
 }
