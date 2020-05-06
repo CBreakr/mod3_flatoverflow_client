@@ -1,3 +1,4 @@
+console.log('index.js loaded')
 
 function showInitialView(){
     // hide sidebar content

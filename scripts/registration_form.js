@@ -1,3 +1,5 @@
+console.log('registration_form.js loaded')
+
 const usersEndpoint = 'https://flatoverflow-api.herokuapp.com/users'
 const form = document.querySelector('#user-registration-form')
 const usernameInput = document.querySelector('#username-input')

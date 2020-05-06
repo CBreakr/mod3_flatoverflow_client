@@ -1,5 +1,9 @@
+console.log('main_question_display.js loaded')
 
 let questionUL = null;
+
+//used to display question in detailed view
+//set within getSingleQuestionWithCallback 
 
 const questionURL = "http://localhost:3000/questions";
 
@@ -7,13 +11,13 @@ document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.getElementById("add_question_button");
     questionUL = document.getElementById("question_list");
 
-    questionUL.addEventListener("click", showPreview);
+    questionUL.addEventListener("click", questionEventHandler);
 
     addButton.addEventListener("click", showQuestionFormView);
 
     document.querySelector(".button_bar").addEventListener("click", filterClick);
 
-    getQuestions();
+    // getQuestions();
 });
 
 function getQuestions(){
@@ -29,7 +33,7 @@ function getSingleQuestionWithCallback(id, callback){
     fetch(`${questionURL}/${id}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        console.log("can we see the data", data);
         callback(data);
     })
     .catch(err => console.log("error", err));
@@ -85,6 +89,7 @@ function createPreviewQuestionElement(question){
         <span class="title is-4">${question.title}</span>
         &nbsp;-&nbsp;
         <span class="title is-5">${question.user.name}</span>
+        ${viewQuestionButton(question)}
         <br />
         <p class="title is-6">${question.text}</p>
         <p>${showTagDisplay(question.tags)}</p>
@@ -93,10 +98,36 @@ function createPreviewQuestionElement(question){
     return replace;
 }
 
+function viewQuestionButton(question) {
+    if (currentUser && question.user_id === currentUser.id) {
+        return `<button class="view" data-id="${question.id}">Edit Question</button>`
+    }
+    else{
+        return `<button class="view" data-id="${question.id}">Answer Question</button>`
+    }
+    return ''
+}
+
+function currentUserAnswerButton(question) {
+    if (currentUser && question.user_id !== currentUser.id) {
+        return `<button class="answer">Answer Question</button>`
+    }
+    return ''
+}
+
 function showTagDisplay(tags){
     let str = "";
     tags.forEach(tag => str += `<span class="question_tag">#${tag.text}</span>`)
     return str;
+}
+
+function questionEventHandler(event){
+    if(event.target.className.indexOf("view") > -1){
+        viewQuestion(event);
+    }
+    else if (event.target.className.indexOf("basic") > -1){
+        showPreview(event);
+    }
 }
 
 function showPreview(event){
