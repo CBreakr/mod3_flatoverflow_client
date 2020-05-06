@@ -11,8 +11,8 @@ function displayQuestionDetails(questionDetail){
   cleanQuestion(questionDetail);
 
   questionDiv.innerHTML = `
-    <h1>Title: ${questionDetail.title}</h1>
-    <p id="question-content-text">Content: ${questionDetail.text}</p>
+    <div>${createUpvoteCounter(questionDetail)} <span class="title is-4">${questionDetail.title}</span>&nbsp;-&nbsp;<span>${questionDetail.user.name}</span></div>
+    <p id="question-content-text">${questionDetail.text}</p>
     <br>
     <div id="question-comments">
     </div>
@@ -28,20 +28,27 @@ function displayQuestionDetails(questionDetail){
 
   let addNoteBtn = document.createElement('button')
   addNoteBtn.id = 'add-update-note-btn'
+
   let br = document.createElement('br')
-  let upvoteBtn = document.createElement('button')
-  upvoteBtn.id = 'upvote-btn'
+  
+  // let upvoteBtn = document.createElement('button')
+  // upvoteBtn.id = 'upvote-btn'
 
-  let upvoteCounterPTag = document.createElement('p')
-  upvoteCounterPTag.id = 'upvote-counter'
-  upvoteCounterPTag.innerText = `upvote: ${questionDetail.question_upvotes.length}`
-  upvoteBtn.innerText = '^'
-
+  // let upvoteCounterPTag = document.createElement('p')
+  // upvoteCounterPTag.id = 'upvote-counter'
+  // upvoteCounterPTag.innerHTML = `
+  // <span class="upvote-boxed">${questionDetail.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span>
+  // `;
+  
   addNoteBtn.innerText = 'Add Update Note'
-  questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
+  questionDiv.append(br, addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
 
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);
+}
+
+function createUpvoteCounter(questionDetail){
+  return `<span class="upvote-boxed"><span class="upvote-counter" data-id=${questionDetail.id}>${questionDetail.question_upvotes.length}</span> <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span>`;
 }
 
 function answerQuestion(event) {

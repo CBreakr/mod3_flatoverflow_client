@@ -46,7 +46,11 @@ questionForm.addEventListener('submit', event => {
 questionForm.addEventListener("click", event => {
   const classes = event.target.className;
   if(typeof classes !== "string"){
-    const parent = event.target.parentNode;
+    let parent = event.target.parentNode;
+    if(parent.tagName === "svg"){
+      parent = parent.parentNode;
+    }
+
     if(parent.className.indexOf("delete-tag") > -1){
       console.log("delete tag");
       parent.parentNode.remove();
