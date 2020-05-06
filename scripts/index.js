@@ -13,6 +13,7 @@ function showInitialView(){
     const left_header = document.getElementById("left-subheader");
     const user_container = document.getElementById("user_container");
     const question_container = document.getElementById("question_container");
+    const button_bar = document.getElementById("button_bar");
     
     disclaimer.style.display = "block";
     sidebar.style.display = "none";
@@ -49,6 +50,7 @@ function showMainQuestionView(){
     question_list.style.display = "block";
     question_form.style.display = "none";
     question_detail.style.display = "none";
+    button_bar.style.display = "flex";
 }
 
 function showQuestionFormView(){
@@ -62,6 +64,10 @@ function showQuestionFormView(){
     question_list.style.display = "none";
     question_form.style.display = "block";
     question_detail.style.display = "none";
+    button_bar.style.display = "none";
+
+    // calling it here for now for testing purposes
+    fillTagsDataList();
 }
 
 function showQuestionDetailView(){
@@ -75,6 +81,7 @@ function showQuestionDetailView(){
     question_list.style.display = "none";
     question_form.style.display = "none";
     question_detail.style.display = "block";
+    button_bar.style.display = "none";
 }
 
 document.addEventListener("DOMContentLoaded", event => {

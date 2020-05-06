@@ -73,6 +73,7 @@ ul {
 li {
     margin-bottom: 4px;
     margin-right: 8px;
+    margin-left: 8px;
     background-color: #eee;
 }
 
@@ -121,8 +122,9 @@ li {
     margin-top: 10px;
 }
 
-.button_bar{
+#button_bar{
     margin-right: 12px;
+    margin-left: 8px;
     display: flex;
     justify-content: space-between;
 }
@@ -152,4 +154,20 @@ button:hover {
 
 #disclaimer p {
     margin-bottom: 30px;
+}
+
+.delete-tag {
+    border: 1px solid var(--border-dark);
+    border-radius: 50%;
+    margin: 0 0 0 2px;
+    padding: 0 3px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.delete-tag:hover {
+    background-color: coral;
 }

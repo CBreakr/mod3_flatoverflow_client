@@ -4,12 +4,17 @@ const questionForm = document.querySelector('#question-form')
 const titleInput = document.querySelector('#title-input')
 const contentInput = document.querySelector('#content-input')
 const questionView = document.querySelector('#question-view')
-const tagsInput = document.querySelector('#tags-input')
+// const tagsInput = document.querySelector('#tags-input')
+
+const tagInput = document.getElementById("tags-input");
+const tagDataList = document.getElementById("taglist");
+const tagDisplay = document.getElementById("tag_list_display");
 
 
 const questionEndpoint = 'http://localhost:3000/questions'
 const tagsEndpoint = 'http://localhost:3000/tags'
 const questionTagsEndpoint = 'http://localhost:3000/question_tags'
+
 const headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -28,15 +33,37 @@ questionForm.addEventListener('submit', event => {
       text: contentInput.value
     }
 
-    postTags(parseTags(tagsInput.value))
-    postQuestion(question)
-    setTimeout(postQuestionTags, 250)
-
-  } else {
+    // postTags(parseTags(tagsInput.value))
+    addTagsToQuestion(question);
+    postQuestion(question);
+  } 
+  else {
     alert('You need to be logged in to ask a question')
     questionForm.reset()
   }
 })
+
+questionForm.addEventListener("click", event => {
+  if(event.target.className.indexOf("delete-tag") > -1){
+    console.log("delete tag");
+    event.target.parentNode.remove();
+  }
+  else if(event.target.id === "add_tag"){
+    console.log("ADD TAG!");
+    moveTagToDisplay();
+    return;
+  }
+})
+
+//
+// make sure we don't accidentally submit the form
+//
+tagInput.addEventListener("keypress", event => {
+  if(event.key === "Enter"){
+    event.preventDefault();
+    moveTagToDisplay();
+  }
+});
 
 function postQuestion(question) {
   fetch(questionEndpoint, {
@@ -67,6 +94,7 @@ function renderQuestion(questionObj) {
   questionView.append(h1, p, button)
 }
 
+/*
 function parseTags(tags) {
   let strings = tags.split(/\W/)
   
@@ -106,4 +134,106 @@ function postQuestionTags() {
       })
     })
   })
+}
+*/
+
+//
+//
+function moveTagToDisplay(){
+  const tagVal = tagInput.value;
+  if(tagVal){
+    const id = findIdOfTag(tagVal);
+
+    if(!tagInDisplay(tagVal)){
+      const tagSpan = document.createElement("span");
+      tagSpan.className = "tag";
+      tagSpan.dataset.id = id;
+      tagSpan.dataset.text = tagVal;
+  
+      const valueSpan = document.createElement("span");
+      valueSpan.innerText = tagVal;
+  
+      const deleteSpan = document.createElement("span");
+      deleteSpan.innerText = "x";
+      deleteSpan.className = "delete-tag";
+  
+      tagSpan.append(valueSpan);
+      tagSpan.append(deleteSpan);
+  
+      tagDisplay.append(tagSpan);
+    }
+
+    tagInput.value = "";
+  }
+}
+
+//
+//
+function findIdOfTag(tag){
+  for(let i = 0; i < tagDataList.children.length; i++){
+    const option = tagDataList.children[i];
+    if(option.value === tag){
+      return option.dataset.id;
+    }
+  }
+
+  return null;
+}
+
+//
+//
+function tagInDisplay(tag){
+  for(let i = 0; i < tagDisplay.children.length; i++){
+    const span = tagDisplay.children[i];
+    if(span.dataset.text === tag){
+      return true;
+    }
+  }
+
+  return false;
+}
+
+//
+//
+function addTagsToQuestion(question){
+  // grab them from the tag display list
+  const tags = [];
+  for(let i = 0; i < tagDisplay.children.length; i++){
+    const tagElement = tagDisplay.children[i];
+    tags.push({
+      id: tagElement.dataset.id,
+      text: tagElement.dataset.text
+    });
+  }
+
+  console.log(tags);
+
+  if(tags.length){
+    question.tags = tags;
+  }
+}
+
+function fillTagsDataList(){
+  console.log("get all tags");
+  fetch(tagsEndpoint)
+  .then(res => res.json())
+  .then(data => {
+    fillAllTags(data);
+  })
+  .catch(err => console.log("error", err));
+}
+
+function fillAllTags(tags){
+  tagDataList.innerHTML = "";
+
+  tags.forEach(tag => {
+    appendIndividualTag(tag);
+  });
+}
+
+function appendIndividualTag(tag){
+  const option = document.createElement("option");
+  option.value = tag.text;
+  option.dataset.id = tag.id;
+  tagDataList.append(option);
 }

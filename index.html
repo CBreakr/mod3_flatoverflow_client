@@ -51,7 +51,7 @@
           <div id="left-subheader" style="display:none;">
             <h1 class="title is_2 center_title">Questions</h1>
           
-            <div class="button_bar">
+            <div id="button_bar">
               <span>
                 <button id="today_filter_question_button" data-filter_type="Today">Today</button> 
                 <button id="new_filter_question_button" data-filter_type="New">New</button> 
@@ -59,7 +59,7 @@
                 <button id="popular_filter_question_button" data-filter_type="Popular">Popular</button>
               </span>
               <span>
-                <button id="mine_filter_question_button" data-user_id="38">Mine</button> 
+                <button id="mine_filter_question_button">Mine</button> 
               </span>
               <span>
                 <button id="add_question_button">Create Question</button> 
@@ -105,17 +105,22 @@
           <div id="user-question" class="boxed" style="display: none;">
             <h1>Ask a question</h1>
             <form id="question-form">
-              <label>Title:</label>
+              <label for="title-input">Title:</label>
               <br>
               <input type="text" id="title-input" name="title" placeholder="Enter question">
               <br><br>
-              <label>Content:</label>
+              <label for="content-input">Content:</label>
               <br>
               <textarea id="content-input" name="text" rows="4" cols="50" placeholder="Elaborate"></textarea>
               <br><br>
-              <label>Tags:</label>
+              <label for="tags-input">Tags:</label>
               <br>
-              <textarea id="tags-input" name="tags" rows="4" cols="50" placeholder="Example: #awesome"></textarea>
+              <div id="tag_list_display"></div>
+              <br />
+              <input id="tags-input" list="taglist"></input>
+              <datalist id="taglist">
+              </datalist>
+              <button type="button" id="add_tag">Add Tag</button>
               <br><br>
               <input type="submit" value="Post question">
             </form>
@@ -133,6 +138,7 @@
   <script type="text/javascript" src="scripts/login.js"></script>
   <script type="text/javascript" src="scripts/main_question_display.js"></script>
   <script type="text/javascript" src="scripts/question_form.js"></script>
+  <script type="text/javascript" src="scripts/filter.js"></script>
 </body>
 </html>
 
