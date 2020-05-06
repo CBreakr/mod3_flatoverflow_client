@@ -98,7 +98,13 @@ function createUpdateNoteTextArea() {
   textarea.name = 'text'
   textarea.rows = '4'
   textarea.cols = '50'
-  textarea.placeholder = 'Add your note'
+
+  //auto-populates the text area for adding an update note, if a note exists
+  if (currentQuestion.update_note) {
+    textarea.value = currentQuestion.update_note
+  } else {
+    textarea.placeholder = 'Add your note'
+  }
 
   let submitBtn = document.createElement('button')
   submitBtn.innerText = 'Update Note'
