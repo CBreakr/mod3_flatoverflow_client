@@ -2,8 +2,8 @@ console.log('main_question_display.js loaded')
 
 let questionUL = null;
 
-//used to display question in detailed view
-//set within getSingleQuestionWithCallback 
+//used in edit_answer_question.js to send PATCH to persist update note
+let currentQuestion;
 
 const questionURL = "http://localhost:3000/questions";
 
@@ -38,6 +38,7 @@ function getSingleQuestionWithCallback(id, callback){
     .then(res => res.json())
     .then(data => {
         console.log("can we see the data", data);
+        currentQuestion = data
         callback(data);
     })
     .catch(err => console.log("error", err));
