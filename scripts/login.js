@@ -1,4 +1,4 @@
-console.log('hello log in world')
+console.log('login.js loaded')
 
 const loginInput = document.querySelector('#username-login-input')
 const loginBtn = document.querySelector('#login-btn')
@@ -10,11 +10,18 @@ loginBtn.addEventListener('click', event => {
   fetch(testingEndpoint)
   .then(resp => resp.json())
   .then(users => {
-    const match = users.filter(validateUser)
+    let match //= users.filter(validateUser)
+    
+    users.forEach(user => {
+      if (loginInput.value === user.name){
+        match = user
+      }
+    })
 
-    if (match.length > 0) {
-      alert(`Welcome back ${loginInput.value}`)
-      currentUser = match[0]
+    if (match) {
+      currentUser = match
+      showMainQuestionView()
+      getQuestions()
       console.log(currentUser)
      } else { 
        alert('you don\'t have an account')

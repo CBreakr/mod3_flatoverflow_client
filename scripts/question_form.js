@@ -1,4 +1,4 @@
-console.log('question_form file')
+console.log('question_form.js loaded')
 
 const questionForm = document.querySelector('#question-form')
 const titleInput = document.querySelector('#title-input')
