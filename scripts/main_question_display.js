@@ -90,7 +90,7 @@ function createBasicQuestionElement(question){
         ${question.title} &nbsp; - &nbsp; ${username} &nbsp; &nbsp
         ${showTagDisplay(question.tags)}
     `;
-    console.log(div.innerHTML);
+
     return div;
 }
 
