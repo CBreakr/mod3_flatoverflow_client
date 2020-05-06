@@ -33,10 +33,12 @@ function displayQuestionDetails(questionDetail){
   let br = document.createElement('br')
   let upvoteBtn = document.createElement('button')
   upvoteBtn.id = 'upvote-btn'
-  let upvoteCounterPTag = document.createElement('p')
 
+  let upvoteCounterPTag = document.createElement('p')
+  upvoteCounterPTag.id = 'upvote-counter'
   upvoteCounterPTag.innerText = `upvote: ${questionDetail.question_upvotes.length}`
   upvoteBtn.innerText = '^'
+
   addNoteBtn.innerText = 'Add Update Note'
   questionView.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
 
