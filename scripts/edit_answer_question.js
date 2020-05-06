@@ -1,48 +1,30 @@
 console.log('edit_answer_question.js loaded')
 
+const questionDiv = document.getElementById("question-details");
+
 function viewQuestion(event){
   const id = event.target.dataset.id;
   getSingleQuestionWithCallback(id, displayQuestionDetails);
 }
 
 function displayQuestionDetails(questionDetail){
-<<<<<<< HEAD
   cleanQuestion(questionDetail);
-  
-  let questionDiv = document.querySelector('#question-details')
 
   questionDiv.innerHTML = `
-=======
-  questionView.innerHTML = `
->>>>>>> ef1b392ebf025ef3dbc39420201b789c257284b1
     <h1>Title: ${questionDetail.title}</h1>
     <p id="question-content-text">Content: ${questionDetail.text}</p>
     <br>
     <div id="question-comments">
     </div>
   `
-  let contentPTag = questionView.children[2]
+  let contentPTag = questionDiv.children[2]
 
   if (questionDetail.update_note) {
     let updateNotePTag = document.createElement('p')
     updateNotePTag.id = 'update-note-text'
     updateNotePTag.innerText = `Update Note: ${questionDetail.update_note}`
-    questionView.insertBefore(updateNotePTag, contentPTag)
+    questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
-
-<<<<<<< HEAD
-  // questionDetail.reverse_comments.forEach(comment => {
-  //   let commentPTag = document.createElement('p')
-  //   commentPTag.innerText = `Comment created at ${comment.created_at}: ${comment.text}`
-  //   questionDiv.append(commentPTag)
-  // })
-=======
-  questionDetail.reverse_comments.forEach(comment => {
-    let commentPTag = document.createElement('p')
-    commentPTag.innerText = `Comment created at ${comment.created_at}: ${comment.text}`
-    questionView.append(commentPTag)
-  })
->>>>>>> ef1b392ebf025ef3dbc39420201b789c257284b1
 
   let addNoteBtn = document.createElement('button')
   addNoteBtn.id = 'add-update-note-btn'
@@ -56,7 +38,7 @@ function displayQuestionDetails(questionDetail){
   upvoteBtn.innerText = '^'
 
   addNoteBtn.innerText = 'Add Update Note'
-  questionView.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
+  questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
 
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);
@@ -67,7 +49,7 @@ function answerQuestion(event) {
   getSingleQuestionWithCallback(id, displayQuestionDetails);
 }
 
-questionView.addEventListener('click', event => {
+questionDiv.addEventListener('click', event => {
   if (event.target.innerText === 'Add Update Note') {
     let addNoteBtn = document.getElementById('add-update-note-btn')
     addNoteBtn.insertAdjacentElement("beforebegin", createUpdateNoteTextArea())
