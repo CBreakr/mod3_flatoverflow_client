@@ -8,7 +8,7 @@ function viewQuestion(event){
 }
 
 function displayQuestionDetails(questionDetail){
-  cleanQuestion(questionDetail);
+  // cleanQuestion(questionDetail);
 
   console.log(questionDetail)
 
@@ -31,7 +31,7 @@ function displayQuestionDetails(questionDetail){
   let br = document.createElement('br')
   let upvoteBtn = document.createElement('button')
   upvoteBtn.id = 'upvote-btn'
-
+  
   let upvoteCounterPTag = document.createElement('p')
   upvoteCounterPTag.id = 'upvote-counter'
   upvoteCounterPTag.innerText = `upvote: ${questionDetail.question_upvotes.length}`
