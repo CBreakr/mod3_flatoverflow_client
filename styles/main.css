@@ -239,6 +239,7 @@ button:hover {
 
 ::selection {
     background-color: var(--primary);
+    color: white;
 }
 
 

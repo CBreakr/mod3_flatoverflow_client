@@ -5,7 +5,7 @@ const form = document.querySelector('#user-registration-form')
 const usernameInput = document.querySelector('#username-input')
 const dropdown = document.querySelector('#is_coach-dropdown')
 
-const testingEndpoint = 'http://localhost:3000/users' 
+const userEndpoint = 'http://localhost:3000/users' 
 
 
 form.addEventListener('submit', event => {
@@ -28,7 +28,7 @@ function parseBool(string) {
 }
 
 function postUser(userObj) {
-  fetch(testingEndpoint, {
+  fetch(userEndpoint, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",

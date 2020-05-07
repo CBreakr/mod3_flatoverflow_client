@@ -77,7 +77,7 @@ function createCommentElement(comment){
         <span class="upvote-counter" data-id=${comment.id}>${comment.comment_upvotes.length}</span>
         <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
         &nbsp; 
-        ${comment.user.name}
+        <span class="author">${comment.user.name}</span>
         ${comment.text}
     `;
     return div;

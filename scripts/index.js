@@ -22,6 +22,9 @@ function showInitialView(){
     left_header.style.display = "none";
     question_container.style.display = "none";
     user_container.style.display = "block";
+
+    const loginInput = document.getElementById("username-login-input");
+    loginInput.focus();
 }
 
 function showMainQuestionView(){
