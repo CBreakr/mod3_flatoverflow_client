@@ -75,31 +75,32 @@ function answerQuestion(event) {
 //listens for submission of update note for question
 questionDiv.addEventListener('click', event => {
   if (event.target.innerText === 'Add Update Note') {
+    console.log('add update note btn clicked')
     let addNoteBtn = document.getElementById('add-update-note-btn')
     addNoteBtn.insertAdjacentElement("beforebegin", createUpdateNoteTextArea())
     addNoteBtn.style.display = 'none'
   } 
   
   if (event.target.innerText === 'Update Note') {
+    console.log('update note btn clicked')
     let updateNoteSection = document.getElementById('update-note-text')
     let textarea = document.getElementById('update-note-textarea')
     let updateNoteValue = textarea.value
 
     patchUpdateNote(currentQuestion, updateNoteValue)
     
-    textarea.value = ''
+    // textarea.value = ''
   
     renderUpdateNote(updateNoteValue)
 
     //toggles update note form display to off upon submission of note
     //toggles the add update note button to on upon submission of note
-    let updateNoteDiv = document.getElementById('update-note-form')
+    questionDiv.removeChild(document.getElementById('update-note-form'))
     let addNoteBtn = document.getElementById('add-update-note-btn')
-    updateNoteDiv.style.display = 'none'
     addNoteBtn.style.display = 'block'
-
   }
 })
+
 
 function createUpdateNoteTextArea() {
   let div = document.createElement('div')
