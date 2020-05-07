@@ -33,7 +33,6 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
-<<<<<<< HEAD
   let addNoteBtn = document.createElement('button')
   addNoteBtn.id = 'add-update-note-btn'
 

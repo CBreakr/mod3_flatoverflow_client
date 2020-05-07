@@ -184,7 +184,6 @@ function showTagDisplay(tags){
 //
 //
 function questionEventHandler(event){
-<<<<<<< HEAD
     if(typeof event.target.className === "string"){
         if(event.target.className.indexOf("detail") > -1){
             //resets clicks on upvote button
@@ -195,15 +194,6 @@ function questionEventHandler(event){
         else if (typeof event.target.className === "string"){
             showPreview(event);
         }
-=======
-    if(event.target.className.indexOf("view") > -1){
-        //resets clicks on upvote button
-        upvoteClickTracker = 0
-        viewQuestion(event);
-    }
-    else if (event.target.className.indexOf("basic") > -1){
-        showPreview(event);
->>>>>>> 0150848a863098b02c3c32f434a438495b89b61f
     }
 }
 
