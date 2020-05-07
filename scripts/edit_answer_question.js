@@ -8,7 +8,9 @@ function viewQuestion(event){
 }
 
 function displayQuestionDetails(questionDetail){
-  cleanQuestion(questionDetail);
+  // cleanQuestion(questionDetail);
+
+  console.log(questionDetail)
 
   if(questionDetail.is_answered){
     questionDiv.className = questionDiv.className.replace("bright", " answer");
@@ -31,10 +33,11 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
+<<<<<<< HEAD
   let addNoteBtn = document.createElement('button')
   addNoteBtn.id = 'add-update-note-btn'
 
-  let br = document.createElement('br')
+  // let br = document.createElement('br')
   
   // let upvoteBtn = document.createElement('button')
   // upvoteBtn.id = 'upvote-btn'
@@ -47,6 +50,14 @@ function displayQuestionDetails(questionDetail){
   
   addNoteBtn.innerText = 'Add Update Note'
   questionDiv.append(addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
+
+  //only author of the question in view can add an update note
+  if (currentQuestion.user_id === currentUser.id) {
+    let addNoteBtn = document.createElement('button')
+    addNoteBtn.id = 'add-update-note-btn'
+    addNoteBtn.innerText = 'Add Update Note'
+    questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
+  }
 
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);
@@ -62,6 +73,7 @@ function answerQuestion(event) {
   getSingleQuestionWithCallback(id, displayQuestionDetails);
 }
 
+//listens for submission of update note for question
 questionDiv.addEventListener('click', event => {
   if (event.target.innerText === 'Add Update Note') {
     let addNoteBtn = document.getElementById('add-update-note-btn')
@@ -79,6 +91,14 @@ questionDiv.addEventListener('click', event => {
     textarea.value = ''
   
     renderUpdateNote(updateNoteValue)
+
+    //toggles update note form display to off upon submission of note
+    //toggles the add update note button to on upon submission of note
+    let updateNoteDiv = document.getElementById('update-note-form')
+    let addNoteBtn = document.getElementById('add-update-note-btn')
+    updateNoteDiv.style.display = 'none'
+    addNoteBtn.style.display = 'block'
+
   }
 })
 
@@ -97,7 +117,13 @@ function createUpdateNoteTextArea() {
   textarea.name = 'text'
   textarea.rows = '4'
   textarea.cols = '50'
-  textarea.placeholder = 'Add your note'
+
+  //auto-populates the text area for adding an update note, if a note exists
+  if (currentQuestion.update_note) {
+    textarea.value = currentQuestion.update_note
+  } else {
+    textarea.placeholder = 'Add your note'
+  }
 
   let submitBtn = document.createElement('button')
   submitBtn.innerText = 'Update Note'
