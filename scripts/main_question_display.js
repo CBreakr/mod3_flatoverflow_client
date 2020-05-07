@@ -252,6 +252,7 @@ function followUser(userID) {
 //append followed users to sidebar
 function addUserToSidebar(followObj) {
     let li = document.createElement('li')
+    li.dataset.user_id = followObj.followee.id
     li.innerText = followObj.followee.name
     followeesDiv.append(li)
 }
