@@ -1,6 +1,6 @@
 
 let commentForm = null;
-let commentList = null;
+let commentList = document.getElementById("comment_list");
 
 let alreadyAnswered = false;
 
@@ -13,7 +13,6 @@ const commentEndpoint = "http://localhost:3000/comments";
 
 document.addEventListener("DOMContentLoaded", event => {
     commentForm = document.getElementById("comment_form");
-    commentList = document.getElementById("comment_list");
 
     commentForm.addEventListener("submit", submitComment);
     commentList.addEventListener("click", event => {
@@ -70,10 +69,15 @@ function createCommentElement(comment){
     if(comment.is_answer){
         div.className = "answer";
     }
+
+    const upvoteClass = getUpvoteClass(comment.comment_upvotes, "comment-upvote");
+
     div.innerHTML = `
         ${createAnswerDisplay(comment)}&nbsp;
-        <span class="upvote-boxed">${comment.comment_upvotes.length} <span class="comment-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; 
-        ${comment.user.name} &nbsp;-&nbsp;
+        <span class="upvote-counter" data-id=${comment.id}>${comment.comment_upvotes.length}</span>
+        <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
+        &nbsp; 
+        ${comment.user.name}
         ${comment.text}
     `;
     return div;

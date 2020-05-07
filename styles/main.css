@@ -217,7 +217,7 @@ button:hover {
     background-color: #dfd;
 }
 
-.upvote-boxed {
+.upvote-counter {
     padding: 2px;
 }
 
@@ -230,6 +230,10 @@ button:hover {
 }
 
 .question-upvote:hover {
+    color: orange;
+}
+
+.already-upvoted {
     color: orange;
 }
 
@@ -298,5 +302,5 @@ input, textarea {
 }
 
 #comment_list_container {
-    margin-bottom: 12px;
+    margin: 16px auto;
 }

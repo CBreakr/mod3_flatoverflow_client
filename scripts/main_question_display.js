@@ -1,6 +1,6 @@
 console.log('main_question_display.js loaded')
 
-let questionUL = null;
+let questionUL = document.getElementById("question_list");
 
 let currentPreview = null;
 
@@ -14,8 +14,6 @@ const questionURL = "http://localhost:3000/questions";
 document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.getElementById("add_question_button");
     const back_to_questions = document.getElementById("back_to_questions");
-
-    questionUL = document.getElementById("question_list");
 
     questionUL.addEventListener("click", questionEventHandler);
 
@@ -44,7 +42,7 @@ function getSingleQuestionWithCallback(id, callback){
     fetch(`${questionURL}/${id}`)
     .then(res => res.json())
     .then(data => {
-        console.log("can we see the data", data);
+        // console.log("can we see the data", data);
         currentQuestion = data
         callback(data);
     })
@@ -82,7 +80,7 @@ function appendQuestion(question){
 
 //
 //
-function createBasicQuestionElement(question){
+function createBasicQuestionElement(question, already_upvoted = null){
     cleanQuestion(question);
 
     const div = document.createElement("div");
@@ -92,11 +90,16 @@ function createBasicQuestionElement(question){
     }
 
     div.dataset.id = question.id;
-    const upvotes = question.upvotes || question.question_upvotes.length;
+    const upvotes = question.upvotes !== undefined ? question.upvotes : question.question_upvotes.length;
     const username = question.username || question.user.name;
+
+    let upvoteClass = getUpvoteClass((question.question_upvotes || already_upvoted), "question-upvote");
+
     div.innerHTML = `
         <span>
-            <span class="upvote-boxed">${upvotes} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp;
+            <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
+            <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
+            &nbsp; &nbsp;
             <span class="author">${username}</span>
         </span>
         <span class="basic_question_title">${question.title}</span> 
@@ -117,19 +120,27 @@ function createPreviewQuestionElement(question){
         replace.className += " answer";
     }
 
+    const upvoteClass = getUpvoteClass(question.question_upvotes, "question-upvote");
+
     replace.dataset.id = question.id;
     replace.dataset.title = question.title;
     replace.dataset.tags = JSON.stringify(question.tags);
     replace.dataset.upvotes = question.question_upvotes.length;   
     replace.dataset.username = question.user.name; 
+
     replace.innerHTML = `
         <span class="title is-4">${question.title}</span>
         &nbsp;&nbsp;
         <span class="title is-5 author">${question.user.name}</span>
         <br />
-        <p class="boxed text">${question.text}</p>
+        <p class="boxed text">
+            ${question.text}
+        </p>
         <p>            
-            <span class="upvote-boxed">${question.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> 
+            <span class="upvote-counter" data-id="${question.id}">
+                ${question.question_upvotes.length}
+            </span> 
+            <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span> 
             &nbsp; &nbsp; ${question.reverse_comments.length} comments
             &nbsp; &nbsp; ${showTagDisplay(question.tags)}
             &nbsp; &nbsp; ${viewQuestionButton(question)}
@@ -173,17 +184,16 @@ function showTagDisplay(tags){
 //
 //
 function questionEventHandler(event){
-    if(event.target.className.indexOf("detail") > -1){
-        //resets clicks on upvote button
-        upvoteClickTracker = 0
-        console.log('inside questionEventHandler')
-        viewQuestion(event);
-    }
-    else if (typeof event.target.className === "string"){
-        showPreview(event);
-    }
-    else if(event.target.tagName !== "ul"){
-        console.log("upvote by elimination");
+    if(typeof event.target.className === "string"){
+        if(event.target.className.indexOf("detail") > -1){
+            //resets clicks on upvote button
+            upvoteClickTracker = 0
+            console.log('inside questionEventHandler')
+            viewQuestion(event);
+        }
+        else if (typeof event.target.className === "string"){
+            showPreview(event);
+        }
     }
 }
 
@@ -214,16 +224,20 @@ function showPreview(event){
 }
 
 function replaceExistingPreview(){
-    const tags = JSON.parse(currentPreview.dataset.tags);    
+    const tags = JSON.parse(currentPreview.dataset.tags);
+
+    const already_upvoted = currentPreview.querySelector(".already-upvoted");
+    const upvoteCounter = currentPreview.querySelector(".upvote-counter");
+
     const q = {
         id: currentPreview.dataset.id,
         title: currentPreview.dataset.title,
-        upvotes: currentPreview.dataset.upvotes,
+        upvotes: upvoteCounter.innerHTML,
         username: currentPreview.dataset.username,
         tags
     };
 
-    const replace = createBasicQuestionElement(q);
+    const replace = createBasicQuestionElement(q, already_upvoted ? "already" : null);
     currentPreview.after(replace);
     currentPreview.remove();
     currentPreview = null;

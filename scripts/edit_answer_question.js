@@ -53,7 +53,8 @@ function displayQuestionDetails(questionDetail){
 }
 
 function createUpvoteCounter(questionDetail){
-  return `<span class="upvote-boxed"><span class="upvote-counter" data-id=${questionDetail.id}>${questionDetail.question_upvotes.length}</span> <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span>`;
+  const upvoteClass = getUpvoteClass(questionDetail.question_upvotes, "question-upvote");
+  return `<span class="upvote-boxed"><span class="upvote-counter" data-id=${questionDetail.id}>${questionDetail.question_upvotes.length}</span> <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span></span>`;
 }
 
 function answerQuestion(event) {
