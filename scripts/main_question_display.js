@@ -9,6 +9,7 @@ let currentQuestion = null;
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
+const followeesDiv = document.getElementById('followees-div')
 const questionURL = "http://localhost:3000/questions";
 
 document.addEventListener("DOMContentLoaded", event => {
@@ -128,10 +129,11 @@ function createPreviewQuestionElement(question){
     replace.dataset.upvotes = question.question_upvotes.length;   
     replace.dataset.username = question.user.name; 
 
+    //added user_id to span to create following on click with current user
     replace.innerHTML = `
         <span class="title is-4">${question.title}</span>
         &nbsp;&nbsp;
-        <span class="title is-5 author">${question.user.name}</span>
+        <span class="title is-5 author" data-user_id="${question.user.id}">${question.user.name}</span>
         <br />
         <p class="boxed text">
             ${question.text}
@@ -219,8 +221,39 @@ function showPreview(event){
         });
     }
     else{
+        //upon click of username will create a following with current user
+        if (event.target.className === "title is-5 author") {
+            console.log('got the span')
+            followUser(event.target.dataset.user_id)
+        }
         console.log("not the basic element");
     }
+}
+
+//create following
+function followUser(userID) {
+    let follow = {
+        follower_id: currentUser.id,
+        followee_id: userID
+    }
+
+    fetch('http://localhost:3000/follows', {
+        method: 'POST',
+        headers, 
+        body: JSON.stringify(follow)
+    })
+    .then(resp => resp.json())
+    .then(follow => {
+        console.log(follow)
+        addUserToSidebar(follow)
+    })
+}
+
+//append followed users to sidebar
+function addUserToSidebar(followObj) {
+    let li = document.createElement('li')
+    li.innerText = followObj.followee.name
+    followeesDiv.append(li)
 }
 
 function replaceExistingPreview(){
