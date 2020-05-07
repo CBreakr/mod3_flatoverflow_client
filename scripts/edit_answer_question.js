@@ -2,8 +2,8 @@ console.log('edit_answer_question.js loaded')
 
 const questionDiv = document.getElementById("question-details");
 
-function viewQuestion(event){
-  const id = event.target.dataset.id;
+function viewQuestion(id){
+  // const id = event.target.dataset.id;
   getSingleQuestionWithCallback(id, displayQuestionDetails);
 }
 
@@ -33,8 +33,8 @@ function displayQuestionDetails(questionDetail){
     questionDiv.insertBefore(updateNotePTag, contentPTag)
   }
 
-  let addNoteBtn = document.createElement('button')
-  addNoteBtn.id = 'add-update-note-btn'
+  // let addNoteBtn = document.createElement('button')
+  // addNoteBtn.id = 'add-update-note-btn'
 
   // let br = document.createElement('br')
   
@@ -47,15 +47,15 @@ function displayQuestionDetails(questionDetail){
   // <span class="upvote-boxed">${questionDetail.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span>
   // `;
   
-  addNoteBtn.innerText = 'Add Update Note'
-  questionDiv.append(addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
+  // addNoteBtn.innerText = 'Add Update Note'
+  // questionDiv.append(addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
 
   //only author of the question in view can add an update note
   if (currentQuestion.user_id === currentUser.id) {
     let addNoteBtn = document.createElement('button')
     addNoteBtn.id = 'add-update-note-btn'
     addNoteBtn.innerText = 'Add Update Note'
-    questionDiv.append(br, addNoteBtn, upvoteCounterPTag, upvoteBtn)
+    questionDiv.append(/*br,*/ addNoteBtn /*, upvoteCounterPTag, upvoteBtn*/)
   }
 
   showQuestionDetailView()

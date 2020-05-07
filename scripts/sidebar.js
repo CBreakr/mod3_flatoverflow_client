@@ -12,6 +12,7 @@ function getPopularTags() {
 }
 
 function renderTrendingTags(tags) {
+  trendingList.innerHTML = "";
   tags.forEach(tag => {
     let li = document.createElement('li')
     li.className = "question_tag tag_link"
@@ -24,7 +25,7 @@ function renderTrendingTags(tags) {
 getPopularTags()
 
 trendingList.addEventListener('click', event => {
-  let tag = event.target.innerText.slice(1)
+  let tag = event.target.innerText //.slice(1)
   tag = encodeURIComponent(tag)
   
   fetch(`${questionFilterEndpoint}/${tag}`)

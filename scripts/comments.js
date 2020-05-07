@@ -133,7 +133,8 @@ function markCommentAsAnswer(button){
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        setAnswerDisplay(button);
+        // setAnswerDisplay(button);
+        viewQuestion(currentQuestion.id);
     })
     .catch(err => console.log("err", err));
 }

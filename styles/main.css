@@ -305,3 +305,13 @@ input, textarea {
 #comment_list_container {
     margin: 16px auto;
 }
+
+.tag_link {
+    transition: 0.1s;
+}
+
+.tag_link:hover {
+    color: white;
+    /* border-color: white; */
+    background-color: var(--primary);
+}

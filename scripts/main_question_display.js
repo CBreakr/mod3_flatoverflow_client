@@ -54,7 +54,7 @@ function getSingleQuestionWithCallback(id, callback){
 function renderAllQuestions(data){
     console.log("render");
     questionUL.innerHTML = "";
-    data.forEach(question => {
+    data && data.forEach(question => {
         appendQuestion(question);
     });
 }
@@ -176,7 +176,7 @@ function showTagDisplay(tags){
     let str = "";
     tags.forEach(tag => {
         cleanTag(tag);
-        str += `<span class="question_tag">#${tag.text}</span>`
+        str += `<span class="question_tag">${tag.text}</span>`
     });
     return str;
 }
@@ -189,7 +189,7 @@ function questionEventHandler(event){
             //resets clicks on upvote button
             upvoteClickTracker = 0
             console.log('inside questionEventHandler')
-            viewQuestion(event);
+            viewQuestion(event.target.dataset.id);
         }
         else if (typeof event.target.className === "string"){
             showPreview(event);

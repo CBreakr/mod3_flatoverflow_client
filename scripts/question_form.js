@@ -81,7 +81,9 @@ function postQuestion(question) {
   .then(resp => resp.json())
   .then(questionObj => {
     createdQuestion = questionObj
-    renderQuestion(questionObj)
+    // renderQuestion(questionObj)
+    viewQuestion(createdQuestion.id);
+    getPopularTags();
   })
   questionForm.reset()
 }
