@@ -4,12 +4,10 @@ const questionForm = document.querySelector('#question-form')
 const titleInput = document.querySelector('#title-input')
 const contentInput = document.querySelector('#content-input')
 const questionView = document.querySelector('#question-view')
-// const tagsInput = document.querySelector('#tags-input')
 
 const tagInput = document.getElementById("tags-input");
 const tagDataList = document.getElementById("taglist");
 const tagDisplay = document.getElementById("tag_list_display");
-
 
 const questionEndpoint = 'http://localhost:3000/questions'
 const tagsEndpoint = 'http://localhost:3000/tags'
