@@ -10,9 +10,14 @@ function viewQuestion(event){
 function displayQuestionDetails(questionDetail){
   cleanQuestion(questionDetail);
 
+  if(questionDetail.is_answered){
+    questionDiv.className = questionDiv.className.replace("bright", " answer");
+  }
+
   questionDiv.innerHTML = `
-    <div>${createUpvoteCounter(questionDetail)} <span class="title is-4">${questionDetail.title}</span>&nbsp;-&nbsp;<span>${questionDetail.user.name}</span></div>
-    <p id="question-content-text">${questionDetail.text}</p>
+    <div>
+    ${createUpvoteCounter(questionDetail)} &nbsp;&nbsp; <span class="title is-4">${questionDetail.title}</span>&nbsp;-&nbsp;<span class="author">${questionDetail.user.name}</span></div>
+    <p id="question-content-text" class="boxed text">${questionDetail.text}</p>
     <br>
     <div id="question-comments">
     </div>
@@ -41,7 +46,7 @@ function displayQuestionDetails(questionDetail){
   // `;
   
   addNoteBtn.innerText = 'Add Update Note'
-  questionDiv.append(br, addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
+  questionDiv.append(addNoteBtn, /*upvoteCounterPTag, upvoteBtn*/)
 
   showQuestionDetailView()
   renderAllComments(questionDetail.reverse_comments);

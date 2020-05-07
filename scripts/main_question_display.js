@@ -95,9 +95,12 @@ function createBasicQuestionElement(question){
     const upvotes = question.upvotes || question.question_upvotes.length;
     const username = question.username || question.user.name;
     div.innerHTML = `
-        <span class="upvote-boxed">${upvotes} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp;
-        ${question.title} &nbsp; - &nbsp; ${username} &nbsp; &nbsp
-        ${showTagDisplay(question.tags)}
+        <span>
+            <span class="upvote-boxed">${upvotes} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp;
+            <span class="author">${username}</span>
+        </span>
+        <span class="basic_question_title">${question.title}</span> 
+        <span>${showTagDisplay(question.tags)}</span>
     `;
 
     return div;
@@ -121,13 +124,16 @@ function createPreviewQuestionElement(question){
     replace.dataset.username = question.user.name; 
     replace.innerHTML = `
         <span class="title is-4">${question.title}</span>
-        &nbsp;-&nbsp;
-        <span class="title is-5">${question.user.name}</span>
-        ${viewQuestionButton(question)}
+        &nbsp;&nbsp;
+        <span class="title is-5 author">${question.user.name}</span>
         <br />
-        <p class="title is-6">${question.text}</p>
-        <p>${showTagDisplay(question.tags)}</p>
-        <p><span class="upvote-boxed">${question.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> &nbsp; &nbsp; ${question.reverse_comments.length} comments</p>
+        <p class="boxed text">${question.text}</p>
+        <p>            
+            <span class="upvote-boxed">${question.question_upvotes.length} <span class="question-upvote"><i class="fas fa-chevron-up"></i></span></span> 
+            &nbsp; &nbsp; ${question.reverse_comments.length} comments
+            &nbsp; &nbsp; ${showTagDisplay(question.tags)}
+            &nbsp; &nbsp; ${viewQuestionButton(question)}
+        </p>
     `;
 
     currentPreview = replace;
@@ -140,10 +146,10 @@ function viewQuestionButton(question) {
     currentQuestion = question;
 
     if (currentUser && question.user_id === currentUser.id) {
-        return `<button class="view" data-id="${question.id}">Edit Question</button>`
+        return `<button class="detail" data-id="${question.id}">Edit Question</button>`
     }
     else{
-        return `<button class="view" data-id="${question.id}">Answer Question</button>`
+        return `<button class="detail" data-id="${question.id}">Answer Question</button>`
     }
     return ''
 }
@@ -167,28 +173,39 @@ function showTagDisplay(tags){
 //
 //
 function questionEventHandler(event){
-    if(event.target.className.indexOf("view") > -1){
+    if(event.target.className.indexOf("detail") > -1){
         //resets clicks on upvote button
         upvoteClickTracker = 0
         console.log('inside questionEventHandler')
         viewQuestion(event);
     }
-    else if (event.target.className.indexOf("basic") > -1){
+    else if (typeof event.target.className === "string"){
         showPreview(event);
+    }
+    else if(event.target.tagName !== "ul"){
+        console.log("upvote by elimination");
     }
 }
 
 function showPreview(event){
-    if(event.target.className.indexOf("basic") > -1){
-        const id = event.target.dataset.id;
+    let target = event.target;
+
+    if(target.className.indexOf("basic_question_title") > -1){
+        target = target.parentNode;
+    }
+
+    console.log("show preview", target);
+
+    if(target.className.indexOf("basic") > -1){
+        const id = target.dataset.id;
         getSingleQuestionWithCallback(id, (question) => {
             if(currentPreview && currentPreview.parentNode){
                 replaceExistingPreview();
             }
             currentPreview = null;
             const questionPreview = createPreviewQuestionElement(question);    
-            event.target.after(questionPreview);
-            event.target.remove();
+            target.after(questionPreview);
+            target.remove();
         });
     }
     else{

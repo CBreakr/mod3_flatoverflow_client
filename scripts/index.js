@@ -67,7 +67,7 @@ function showQuestionFormView(){
     const question_detail = document.getElementById("question-view");
 
     question_list.style.display = "none";
-    question_form.style.display = "block";
+    question_form.style.display = "inline-block";
     question_detail.style.display = "none";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";

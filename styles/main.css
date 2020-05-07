@@ -3,6 +3,8 @@
     --primary:#04b4e4; /*rgb(68, 210, 250);*/
     --border-dark: #ccc;
     --main-hover: lightcyan;
+    --light-gray: #eee;
+    --transition_time: 0.1s;
 }
 
 html {
@@ -32,10 +34,10 @@ body {
     height: 40px;
 }
 
-.top-content{
+/* .top-content{
     margin-left: 4px;
     padding-top: 8px;
-}
+} */
 
 .top-left {
     flex-shink: 0;
@@ -75,7 +77,7 @@ ul {
 }
 
 li {
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     margin-right: 8px;
     margin-left: 8px;
     background-color: #eee;
@@ -84,12 +86,13 @@ li {
 .question {
     border: 1px solid var(--border-dark);
     padding-left: 4px;
+    transition: var(--transition_time);
 }
 
 .preview {
     border: 1px solid var(--border-dark);
     border-radius: 4px;
-    padding: 5px;
+    padding: 8px;
     background-color: var(--main-hover);
 }
 
@@ -98,11 +101,12 @@ li {
 }
 
 .question_tag {
-    background-color: #eee;
-    border: 1px solid var(--border-dark);
+    background: white;
+    border: 1px solid var(--primary);
     border-radius: 2px;
-    padding: 2px;
+    padding: 0 2px;
     margin-right: 4px;
+    color: var(--primary);    
 }
 
 .icon-container {
@@ -133,24 +137,34 @@ li {
     justify-content: space-between;
 }
 
+button {
+    font-weight: bold;
+    background-color: white;
+    border-radius: 4px;
+    padding: 4px;
+    transition: var(--transition_time);
+}
+
 button:hover {
     background-color: var(--primary);
-    border-radius: 4px;
     color: white;
 }
 
 .left-bottom {
-    background-color: #eee;
+    background-color: var(--light-gray);
 }
 
 .center_title{
     text-align: center;
+    padding: 8px 0;
+    /* background-color: var(--main-hover); */
 }
 
 .boxed {
     margin: 8px;
     padding: 8px;
     border: 1px solid var(--border-dark);
+    background-color: var(--light-gray);
 }
 
 #disclaimer {
@@ -172,6 +186,7 @@ button:hover {
     background-color: coral;
     color: white;
     cursor: default;
+    transition: var(--transition_time);
 }
 
 .delete-tag:hover svg {
@@ -179,7 +194,7 @@ button:hover {
 }
 
 #back_to_questions{
-    transition: 0.1s;
+    transition: var(--transition_time);
 }
 
 #back_to_questions:hover {
@@ -206,6 +221,10 @@ button:hover {
     padding: 2px;
 }
 
+.comment-upvote, .question_upvote {
+    transition: var(--transition_time);
+}
+
 .comment-upvote:hover {
     color: orange;
 }
@@ -227,4 +246,57 @@ input:focus, textarea:focus {
 
 .basic {
     cursor: default;
+    display: flex;
+    justify-content: space-between;
+}
+
+.author {
+    color: var(--primary);
+    text-shadow: 1px 1px white;
+}
+
+#user-question {
+    display: inline-block;
+    text-align: center;
+}
+
+#title-input {
+    width:500px;
+}
+
+#content-input {
+    width:500px;
+}
+
+input, textarea {
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    padding: 4px;
+}
+
+#question_form_container {
+    display: flex;
+    justify-content: center
+}
+
+#user-question {
+    background-color: var(--light-gray);
+}
+
+.large_button {
+    font-size: 1.2rem;
+}
+
+.text {
+    background-color: white;
+    margin: 12px 0;
+    /* margin-bottom: 12px; */
+}
+
+.bright {
+    background-color: var(--main-hover);
+}
+
+#comment_list_container {
+    margin-bottom: 12px;
 }

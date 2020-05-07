@@ -49,10 +49,10 @@
         </div>
         <div class="top-content">
           <div id="left-subheader" style="display:none;">
-            <h1 class="title is_2 center_title">
+            <h1 class="title is-1 center_title">
               <span id="back_to_questions">
                 <i class="fas fa-angle-double-left"></i>
-              </span>
+              </span>              
               Questions
             </h1>
           
@@ -64,7 +64,7 @@
                 <button id="popular_filter_question_button" data-filter_type="Popular">Popular</button>
               </span>
               <span>
-                <button id="mine_filter_question_button">Mine</button> 
+                <button id="mine_filter_question_button">My Questions</button> 
               </span>
               <span>
                 <button id="add_question_button">Create Question</button> 
@@ -107,36 +107,36 @@
             </ul>
           </div>
         
-          <div id="user-question" class="boxed" style="display: none;">
-            <h1>Ask a question</h1>
-            <form id="question-form">
-              <label for="title-input">Title:</label>
-              <br>
-              <input type="text" id="title-input" name="title" placeholder="Enter question">
-              <br><br>
-              <label for="content-input">Content:</label>
-              <br>
-              <textarea id="content-input" name="text" rows="4" cols="50" placeholder="Elaborate"></textarea>
-              <br><br>
-              <label for="tags-input">Tags:</label>
-              <br>
-              <div id="tag_list_display"></div>
-              <br />
-              <input id="tags-input" list="taglist"></input>
-              <datalist id="taglist">
-              </datalist>
-              <button type="button" id="add_tag">Add Tag</button>
-              <br><br>
-              <input type="submit" value="Post question">
-            </form>
+          <div id="question_form_container">
+            <div id="user-question" class="boxed" style="display: none;">
+              <h3 class="title is-4">What would you like to know?</h3>
+              <form id="question-form">
+                <input type="text" id="title-input" name="title" placeholder="Enter question" size="100" />
+                <br>
+                <br>
+                <textarea id="content-input" name="text" rows="20" cols="100" placeholder="Can you elaborate on that?"></textarea>
+                <br>
+                <div id="tag_list_display"></div>
+                <br />
+                <input id="tags-input" list="taglist"></input>
+                <datalist id="taglist">
+                </datalist>
+                <button type="button" id="add_tag">Add Tag</button>
+                <br><br>
+                <button class="large_button">Post Question</button>
+              </form>
+            </div>            
           </div>
         
           <div id="question-view" style="display:none;">
-            <div id="question-details" class="boxed"></div>
+            <div id="question-details" class="boxed bright"></div>
             <div id="comments-view">
               <div id="comment_form_container" class="boxed">
+                <span class="title is-6">
+                  Respond to the question
+                </span>
                 <form id="comment_form">
-                  <textarea name="text"></textarea>
+                  <textarea name="text" rows="5" cols="100"></textarea>
                   <br />
                   <button>Add Comment</button>
                 </form>
