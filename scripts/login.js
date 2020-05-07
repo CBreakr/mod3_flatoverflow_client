@@ -34,6 +34,7 @@ loginForm.addEventListener('submit', event => {
       console.log(currentUser)
       //will fetch current followees for user upon logging in
       getFollowees(currentUser.id)
+      getNotifications();
     } else { 
       alert('you don\'t have an account')
     }
