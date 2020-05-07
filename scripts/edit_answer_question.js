@@ -99,6 +99,13 @@ questionDiv.addEventListener('click', event => {
     let addNoteBtn = document.getElementById('add-update-note-btn')
     addNoteBtn.style.display = 'block'
   }
+
+  if (event.target.innerText === 'Cancel') {
+    console.log('cancel btn clicked')
+    let addNoteBtn = document.getElementById('add-update-note-btn')
+    questionDiv.removeChild(document.getElementById('update-note-form'))
+    addNoteBtn.style.display = 'block'
+  }
 })
 
 
@@ -128,7 +135,10 @@ function createUpdateNoteTextArea() {
   let submitBtn = document.createElement('button')
   submitBtn.innerText = 'Update Note'
 
-  div.append(h3, br, textarea, br2, submitBtn)
+  let cancelBtn = document.createElement('button')
+  cancelBtn.innerText = 'Cancel'
+
+  div.append(h3, br, textarea, br2, submitBtn, cancelBtn)
 
   return div
 }
