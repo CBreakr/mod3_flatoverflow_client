@@ -164,7 +164,7 @@ button:hover {
 .center_title{
     text-align: center;
     padding: 8px 0;
-    /* background-color: var(--main-hover); */
+    /* background-color: var(--light-gray); */
 }
 
 .boxed {

@@ -43,12 +43,16 @@ function showMainQuestionView(){
     const left_header = document.getElementById("left-subheader");
     const user_container = document.getElementById("user_container");
     const question_container = document.getElementById("question_container");
+
+    const question_title = document.querySelector(".center_title");
     
     disclaimer.style.display = "none";
     sidebar.style.display = "block";
     left_header.style.display = "block";
     question_container.style.display = "block";
     user_container.style.display = "none";
+
+    // question_title.style.display = "none";
 
     const question_list = document.getElementById("question-display");
     const question_form = document.getElementById("user-question");
@@ -69,11 +73,15 @@ function showQuestionFormView(){
     const question_form = document.getElementById("user-question");
     const question_detail = document.getElementById("question-view");
 
+    const question_title = document.querySelector(".center_title");
+
     question_list.style.display = "none";
     question_form.style.display = "inline-block";
     question_detail.style.display = "none";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";
+
+    // question_title.style.display = "block";
 
     // calling it here for now for testing purposes
     fillTagsDataList();
@@ -87,11 +95,15 @@ function showQuestionDetailView(){
     const question_form = document.getElementById("user-question");
     const question_detail = document.getElementById("question-view");
 
+    const question_title = document.querySelector(".center_title");
+
     question_list.style.display = "none";
     question_form.style.display = "none";
     question_detail.style.display = "block";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";
+
+    // question_title.style.display = "block";
 }
 
 document.addEventListener("DOMContentLoaded", event => {
