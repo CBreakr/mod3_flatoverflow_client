@@ -49,7 +49,7 @@ followeesList.addEventListener('click', event => {
           followee_id: event.target.parentNode.dataset.user_id
         }
     
-        fetch(`http://localhost:3000/follows/${event.target.dataset.follow_id}`, {
+        fetch(`${baseEndpoint}/follows/${event.target.dataset.follow_id}`, {
           method: 'DELETE',
           headers,
           body: JSON.stringify(followObj)
