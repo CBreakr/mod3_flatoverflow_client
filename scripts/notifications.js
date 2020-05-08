@@ -23,7 +23,7 @@ function getNotifications(){
     .then(data => {
         renderAllNotifications(data);
         if(data && data.length > 0){
-            notifyUser();
+            notifyUser(`${data.length} notifications!`);
         }
     })
     .catch(err => console.log("err", err));
