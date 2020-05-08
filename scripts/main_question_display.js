@@ -226,10 +226,36 @@ function showPreview(event){
     else{
         //upon click of username will create a following with current user
         if (event.target.className === "title is-5 author") {
-            console.log('got the span')
-            followUser(event.target.dataset.user_id)
+            
+            let ul = document.getElementById('followees-list')
+            console.dir(ul)
+
+            console.log(Array.from(ul.children))
+            console.log(target.innerText)
+
+            let isPresent = false
+
+            Array.from(ul.children).forEach(li => {
+                console.log(li.innerText)
+                if (li.innerText === target.innerText) {
+                    isPresent = true
+                }
+            })
+                    
+            console.log(isPresent)
+
+                if(currentUser.id !== parseInt(event.target.dataset.user_id)){
+                    if (!isPresent) {
+                        followUser(event.target.dataset.user_id)
+                    } else {
+                        alert('you already follow this person!')
+                    }
+                } else {
+                    alert('you cannot follow yourself!')
+                }
+            
+            console.log("not the basic element");
         }
-        console.log("not the basic element");
     }
 }
 
