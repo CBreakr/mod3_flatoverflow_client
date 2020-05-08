@@ -85,6 +85,7 @@ mainQuestionViewDiv.addEventListener('click', event => {
 
 //append followed users to sidebar
 function addUserToSidebar(followObj) {
+  // console.log(followObj, 'here I ammmmmmmmm')
   let li = document.createElement('li')
   li.dataset.user_id = followObj.followee.id
   li.innerText = followObj.followee.name
