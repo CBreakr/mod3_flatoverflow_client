@@ -6,6 +6,7 @@ const usernameInput = document.querySelector('#username-input')
 const dropdown = document.querySelector('#is_coach-dropdown')
 
 const userEndpoint = `${baseEndpoint}/users` 
+console.log("userEndpoint", userEndpoint);
 
 
 form.addEventListener('submit', event => {
