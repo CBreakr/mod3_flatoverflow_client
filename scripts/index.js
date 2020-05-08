@@ -1,5 +1,12 @@
 console.log('index.js loaded')
 
+// const baseEndpoint = "http://localhost:3000";
+const baseEndpoint = "https://flatoverflow-api.herokuapp.com";
+
+console.log(baseEndpoint);
+
+createNotificationWebsocketConnection();
+
 function showInitialView(){
     // hide sidebar content
     // show disclaimer
@@ -99,6 +106,9 @@ function showLeaderboardView(){
 
     let showLeaderboard = document.getElementById('leaderboard-div')
     showLeaderboard.style.display = 'block'
+
+    // I'm not sure where else to put it?
+    cancelCommentSocket();
 }
 
 function showQuestionFormView(){

@@ -1,7 +1,9 @@
 console.log('sidebar.js loaded')
 
-const trendingTagsEndpoint = 'http://localhost:3000/tags/trending'
-const questionFilterEndpoint = 'http://localhost:3000/questions/filter'
+const trendingTagsEndpoint = `${baseEndpoint}/tags/trending`
+const questionFilterEndpoint = `${baseEndpoint}/questions/filter`
+
+console.log(trendingTagsEndpoint);
 
 let trendingList = document.getElementById('trending_tags_list')
 

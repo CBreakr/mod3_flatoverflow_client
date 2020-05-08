@@ -1,11 +1,15 @@
 console.log('registration_form.js loaded')
 
-const usersEndpoint = 'https://flatoverflow-api.herokuapp.com/users'
+// const usersEndpoint = 'https://flatoverflow-api.herokuapp.com/users'
 const registrationForm = document.querySelector('#user-registration-form')
+// const usersEndpoint = 'https://flatoverflow-api.herokuapp.com/users'
+const form = document.querySelector('#user-registration-form')
+
 const usernameInput = document.querySelector('#username-input')
 const dropdown = document.querySelector('#is_coach-dropdown')
 
-const userEndpoint = 'http://localhost:3000/users' 
+const userEndpoint = `${baseEndpoint}/users` 
+console.log("userEndpoint", userEndpoint);
 
 
 registrationForm.addEventListener('submit', event => {

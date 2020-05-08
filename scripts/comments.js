@@ -9,7 +9,7 @@ const commentHeaders = {
     "accept": "application/json"
 };
 
-const commentEndpoint = "http://localhost:3000/comments";
+const commentEndpoint = `${baseEndpoint}/comments`;
 
 document.addEventListener("DOMContentLoaded", event => {
     commentForm = document.getElementById("comment_form");
@@ -105,16 +105,19 @@ function submitComment(event){
         headers: commentHeaders,
         body: JSON.stringify(comment)
     })
-    .then(res => res.json())
-    .then(data => {
+    .then(res => {
         commentForm.reset();
-        if(comment.is_answer){
-            alreadyAnswered = true;
-        }
-        // prependNewComment(data);
-        appendComment(data, true);
     })
     .catch(err => console.log("err", err));
+    // .then(res => res.json())
+    // .then(data => {
+    //     commentForm.reset();
+    //     if(comment.is_answer){
+    //         alreadyAnswered = true;
+    //     }
+    //     // prependNewComment(data);
+    //     appendComment(data, true);
+    // })
 }
 
 function createCommentFromForm(){
@@ -134,13 +137,16 @@ function markCommentAsAnswer(button){
         method: "PATCH",
         headers: commentHeaders
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        // setAnswerDisplay(button);
-        viewQuestion(currentQuestion.id);
+    .then(res => {
+        console.log("answer");
     })
     .catch(err => console.log("err", err));
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     // setAnswerDisplay(button);
+    //     viewQuestion(currentQuestion.id);
+    // })
 }
 
 function setAnswerDisplay(button){

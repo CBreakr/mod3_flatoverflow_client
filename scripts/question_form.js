@@ -10,9 +10,9 @@ const tagDataList = document.getElementById("taglist");
 const tagDisplay = document.getElementById("tag_list_display");
 const tag_input_container = document.getElementById("tag_input_container");
 
-const questionEndpoint = 'http://localhost:3000/questions'
-const tagsEndpoint = 'http://localhost:3000/tags'
-const questionTagsEndpoint = 'http://localhost:3000/question_tags'
+const questionEndpoint = `${baseEndpoint}/questions`
+const tagsEndpoint = `${baseEndpoint}/tags`
+const questionTagsEndpoint = `${baseEndpoint}/question_tags`
 
 const TAG_LIMIT = 4;
 

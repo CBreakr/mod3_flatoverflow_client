@@ -1,14 +1,17 @@
 console.log('follows.js loaded')
 
 const followeesList = document.getElementById('followees-list');
-const myFilterQuestionEndpoint = 'http://localhost:3000/questions/myfilter/'
+
+// const myFilterQuestionEndpoint = 'http://localhost:3000/questions/myfilter/'
 const mainQuestionViewDiv = document.querySelector('div[class="bottom inner')
 const questionDetailViewDiv = document.getElementById('question-details')
 
 console.log(questionDetailViewDiv, 'inside follow.js logging this element!')
 
+const myFilterQuestionEndpoint = `${baseEndpoint}/questions/myfilter/`;
+
 function getFollowees(id) {
-  fetch(`http://localhost:3000/follows/filter/${id}`)
+  fetch(`${baseEndpoint}/follows/filter/${id}`)
   .then(resp => resp.json())
   .then(followeesObj => {
     console.log(followeesObj)

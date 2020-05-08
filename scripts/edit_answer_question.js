@@ -60,6 +60,9 @@ function displayQuestionDetails(questionDetail){
 
   showQuestionDetailView()
   renderAllComments(questionDetail.comments);
+
+  // create the websocket connection
+  createCommentWebsocketConnection(currentQuestion.id);
 }
 
 function createUpvoteCounter(questionDetail){
