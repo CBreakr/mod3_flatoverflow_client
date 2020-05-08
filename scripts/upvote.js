@@ -132,3 +132,15 @@ function getUpvoteClass(upvoteList, defaultClass){
   }
   return defaultClass;
 }
+
+const leaderboardTable = document.getElementById('leaderboard-table')
+
+// function populateLeaderboardTable() {
+//   fetch('http://localhost:3000/users')
+//   .then(resp => resp.json())
+//   .then(user => {
+//     let tr = document.createElement('tr')
+//     let td1 = document.createElement('td')
+//     let td1 = document.createElement('td')
+//   })
+// }
