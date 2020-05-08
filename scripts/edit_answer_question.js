@@ -59,7 +59,7 @@ function displayQuestionDetails(questionDetail){
   }
 
   showQuestionDetailView()
-  renderAllComments(questionDetail.comments);
+  renderAllComments(questionDetail.ordered_comments);
 
   // create the websocket connection
   createCommentWebsocketConnection(currentQuestion.id);

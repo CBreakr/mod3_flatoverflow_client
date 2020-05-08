@@ -152,7 +152,7 @@ function createPreviewQuestionElement(question){
                 ${question.question_upvotes.length}
             </span> 
             <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span> 
-            &nbsp; &nbsp; ${question.comments.length} comments
+            &nbsp; &nbsp; ${question.ordered_comments.length} comments
             &nbsp; &nbsp; ${showTagDisplay(question.tags)}
             &nbsp; &nbsp; ${viewQuestionButton(question)}
         </p>
