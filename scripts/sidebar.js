@@ -36,16 +36,3 @@ trendingList.addEventListener('click', event => {
     showMainQuestionView();
   })
 })
-
-// function renderQuestion(questions) {
-//   questions.forEach(question => {
-//     let div = document.createElement('div')
-//     div.innerHTML = `
-//       <h1>${question.title}</h1>
-//       <p>Content: ${question.text}</p>
-//       <p>Update Note: ${question.update_note}</p>
-//     `
-//     let questionDiv = document.getElementById('testing-questions')
-//     questionDiv.append(div)
-//   })
-// }

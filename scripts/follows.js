@@ -62,9 +62,6 @@ followeesList.addEventListener('click', event => {
 
 mainQuestionViewDiv.addEventListener('click', event => {
   if (event.target.className === 'author') {
-
-    console.log(event.target, 'MOVE FORWARD')
-  
     let ul = document.getElementById('followees-list')
     let isPresent = false
 
@@ -91,7 +88,6 @@ mainQuestionViewDiv.addEventListener('click', event => {
 
 //append followed users to sidebar
 function addUserToSidebar(followObj) {
-  console.log(followObj, 'INSIDE ADDUSERTOSIDEBAR FOR QUESTION DETAILS')
 
   let li = document.createElement('li')
   li.dataset.user_id = followObj.followee.id

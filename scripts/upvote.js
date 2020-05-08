@@ -3,8 +3,6 @@ let userTracker = {questions: []}
 const questionUpvotesEndpoint = 'http://localhost:3000/question_upvotes'
 const commentUpvotesEndpoint = 'http://localhost:3000/comment_upvotes'
 
-// let upvoteCounter = null;
-
 questionView.addEventListener('click', event => {
 
   const upvoteCounter = questionView.querySelector('.upvote-counter');

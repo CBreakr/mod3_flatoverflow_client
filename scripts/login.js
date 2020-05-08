@@ -34,10 +34,8 @@ loginForm.addEventListener('submit', event => {
       userTracker.user = match
 
       //will fetch scores for comments marked as the answer, upvoted, and questions upvoted
-      let questionsScore = getTotalQuestionUpvotes(currentUser.id)
-      console.log(questionsScore, 'be sure about this', questionsScore)
-      let commentsScore = getTotalCommentUpvotes(currentUser.id)
-      console.log(commentsScore, 'tell me about it')
+      // let questionsScore = getTotalQuestionUpvotes(currentUser.id)
+      // let commentsScore = getTotalCommentUpvotes(currentUser.id)
 
       // console.log(questionsScore, 'did it return something???')
 
@@ -66,7 +64,11 @@ function setUserDisplay(){
   user_panel.style.display = "inline";
 
   const username = document.getElementById("username");
-  username.innerText = currentUser.name;
+  username.innerText = `${currentUser.name} (${currentUser.score})`;
+
+  username.addEventListener('click', event => {
+    showLeaderboardView()
+  })
 }
 
 logoutButton.addEventListener("click", logOut);
