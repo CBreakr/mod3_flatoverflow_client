@@ -38,6 +38,12 @@ function showMainQuestionView(){
 
     // getQuestions();
 
+    //display current user logged in
+    const headerDiv = document.querySelector('div[class="top_header primary"]')
+    let loggedInUserPTag = document.createElement('p')
+    loggedInUserPTag.innerText = `Logged In: ${currentUser.name}`
+    headerDiv.append(loggedInUserPTag)
+
     const disclaimer = document.getElementById("disclaimer");
     const sidebar = document.getElementById("sidebar");
     const left_header = document.getElementById("left-subheader");

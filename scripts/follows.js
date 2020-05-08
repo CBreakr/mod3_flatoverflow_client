@@ -22,6 +22,7 @@ function renderFollowees(followees) {
 
 followeesDiv.addEventListener('click', event => {
   if (event.target.tagName === 'LI') {
+    console.log('li pressed')
     fetch(`${myFilterQuestionEndpoint}/${event.target.dataset.user_id}`)
     .then(resp => resp.json())
     .then(renderAllQuestions)
