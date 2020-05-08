@@ -64,6 +64,9 @@ function showMainQuestionView(){
     button_bar.style.display = "flex";
     back_to_questions.style.display = "none";
     reload_questions.style.display = "inline";
+
+    // I'm not sure where else to put it?
+    cancelCommentSocket();
 }
 
 function showQuestionFormView(){
