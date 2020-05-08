@@ -63,7 +63,45 @@ function showMainQuestionView(){
     question_detail.style.display = "none";
     button_bar.style.display = "flex";
     back_to_questions.style.display = "none";
+<<<<<<< HEAD
     reload_questions.style.display = "inline";
+=======
+
+    let showLeaderboard = document.getElementById('leaderboard-div')
+    showLeaderboard.style.display = 'none'
+
+}
+
+function showLeaderboardView(){
+    const disclaimer = document.getElementById("disclaimer");
+    const sidebar = document.getElementById("sidebar");
+    const left_header = document.getElementById("left-subheader");
+    const user_container = document.getElementById("user_container");
+    const question_container = document.getElementById("question_container");
+
+    const question_title = document.querySelector(".center_title");
+    
+    disclaimer.style.display = "none";
+    sidebar.style.display = "block";
+    left_header.style.display = "block";
+    question_container.style.display = "none";
+    user_container.style.display = "none";
+
+    // question_title.style.display = "none";
+
+    const question_list = document.getElementById("question-display");
+    const question_form = document.getElementById("user-question");
+    const question_detail = document.getElementById("question-view");
+
+    question_list.style.display = "none";
+    question_form.style.display = "none";
+    question_detail.style.display = "none";
+    button_bar.style.display = "none";
+    back_to_questions.style.display = "inline";
+
+    let showLeaderboard = document.getElementById('leaderboard-div')
+    showLeaderboard.style.display = 'block'
+>>>>>>> 0438e61e1a95ad77ca34193d09896f732836c8e7
 }
 
 function showQuestionFormView(){

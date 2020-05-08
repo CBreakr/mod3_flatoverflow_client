@@ -99,10 +99,12 @@ function createBasicQuestionElement(question, already_upvoted = null){
     div.dataset.id = question.id;
     const upvotes = question.upvotes !== undefined ? question.upvotes : question.question_upvotes.length;
     const username = question.username || question.user.name;
+    // console.log(question, 'plus i am here')
 
     let upvoteClass = getUpvoteClass((question.question_upvotes || already_upvoted), "question-upvote");
 
     div.innerHTML = `
+<<<<<<< HEAD
         <span class="basic-inner">
             <span>
                 <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
@@ -112,6 +114,15 @@ function createBasicQuestionElement(question, already_upvoted = null){
             </span>
             </span>
             <span class="basic_question_title">${question.title}</span> 
+=======
+        <span>
+            <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
+            <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
+            &nbsp; &nbsp;
+            <span class="author" data-userID="${question.user_id}">${username}</span>
+        </span>
+        <span class="basic_question_title">${question.title}</span> 
+>>>>>>> 0438e61e1a95ad77ca34193d09896f732836c8e7
         <span>${showTagDisplay(question.tags)}</span>
     `;
 
@@ -231,10 +242,25 @@ function showPreview(event){
     else{
         //upon click of username will create a following with current user
         if (event.target.className === "title is-5 author") {
-            console.log('got the span')
-            followUser(event.target.dataset.user_id)
+            let ul = document.getElementById('followees-list')
+            let isPresent = false
+
+            Array.from(ul.children).forEach(li => {
+                let text = li.innerText.replace('Unfollow', '')
+                if (text=== target.innerText) {
+                    isPresent = true
+                }
+            }) 
+                if(currentUser.id !== parseInt(event.target.dataset.user_id)){
+                    if (!isPresent) {
+                        followUser(event.target.dataset.user_id)
+                    } else {
+                        alert('you already follow this person!')
+                    }
+                } else {
+                    alert('you cannot follow yourself!')
+                }
         }
-        console.log("not the basic element");
     }
 }
 
