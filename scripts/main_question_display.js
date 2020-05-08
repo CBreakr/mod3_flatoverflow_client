@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", event => {
 
     questionUL.addEventListener("click", questionEventHandler);
 
-    addButton.addEventListener("click", showQuestionFormView);
+    addButton.addEventListener("click", event => {
+        setTagDisplayVisibility();
+        clearAllQuestionFormInputs();
+        showQuestionFormView();
+    });
 
     back_to_questions.addEventListener("click", getQuestions);
 });

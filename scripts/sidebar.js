@@ -33,6 +33,7 @@ trendingList.addEventListener('click', event => {
   .then(data => {
     console.log(data)
     renderAllQuestions(data)
+    showMainQuestionView();
   })
 })
 

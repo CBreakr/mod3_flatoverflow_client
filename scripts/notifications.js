@@ -6,8 +6,15 @@ const notificationHeaders = {
     "accept": "application/json"
 };
 
+document.addEventListener("click", event => {
+    console.dir(event.target.parentNode.parentNode);
+});
+
 const notificationContainer = document.getElementById("notifications");
-const refresh = document.getElementById("refresh_notifications");
+// const refresh = document.getElementById("refresh_notifications");
+const notification_bell = document.getElementById("notification_bell");
+
+console.log("NOTIFICATION CONTAINER", notificationContainer);
 
 function getNotifications(){
     notificationContainer.innerHTML = "";
@@ -32,9 +39,15 @@ function removeNotification(id){
 }
 
 function renderAllNotifications(data){
-    data && data.forEach(notification => {
-        renderNotification(notification);
-    });
+    if(data && data.length > 0){
+        notification_bell.className = "notification_bell_full";
+        data.forEach(notification => {
+            renderNotification(notification);
+        });
+    }
+    else{
+        notification_bell.className = "notification_bell_empty";
+    }
 }
 
 function renderNotification(notification){
@@ -45,10 +58,10 @@ function renderNotification(notification){
 
     if(notification.is_answered){
         div.className = "answer";
-        content = `ANSWERED: ${notification.question.title}`;
+        content = `<i class="fas fa-check"></i> ${notification.question.title}`;
     }
     else{
-        content = `RESPONSE: ${notification.question.title}`;
+        content = `<i class="fas fa-reply"></i> ${notification.question.title}`;
     }
 
     div.dataset.id = notification.id;
@@ -58,10 +71,10 @@ function renderNotification(notification){
     notificationContainer.append(li);
 }
 
-refresh.addEventListener("click", event => {
-    console.log("REFRESH");
-    getNotifications();
-});
+// refresh.addEventListener("click", event => {
+//     console.log("REFRESH");
+//     getNotifications();
+// });
 
 notificationContainer.addEventListener("click", event => {
     console.log(event.target);

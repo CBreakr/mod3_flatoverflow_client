@@ -34,6 +34,13 @@ body {
     height: 40px;
 }
 
+.right_header {
+    display: flex;
+    flex-flow: row-reverse;
+    padding: 8px;
+    align-items: center;
+}
+
 /* .top-content{
     margin-left: 4px;
     padding-top: 8px;
@@ -68,7 +75,7 @@ ul {
 } */
 
 .new-element {
-    animation: fade 2s forwards;
+    animation: fade 1s forwards;
 }
 
 @keyframes fade {
@@ -307,11 +314,74 @@ input, textarea {
 }
 
 .tag_link {
-    transition: 0.1s;
+    transition: var(--transition_time);
 }
 
 .tag_link:hover {
     color: white;
     /* border-color: white; */
     background-color: var(--primary);
+}
+
+/*
+NOTIFICATION
+*/
+
+.notification_bell_empty {
+    position: relative;
+}
+
+.notification_bell_full {
+    position: relative;
+    color: orange;
+}
+
+.notification_bell_full:hover #notifications {
+    visibility: visible;
+}
+
+#notifications {
+    visibility: hidden;
+    width: 200px;
+    background-color: white;
+    border: 1px solid var(--border-dark);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    color: black;
+    
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    left: -60px;
+    top: -5px;
+    z-index: 1;
+}
+
+#notifications li {
+    border: 1px solid var(--border-dark);
+    transition: var(--transition_time);
+}
+
+#notifications li:hover {
+    background: var(--main-hover);
+    cursor: default;
+    border: 1px solid black;
+}
+
+/*
+LOGOUT
+*/
+
+#logout_button:hover {
+    color: white;
+    background-color: red;
+}
+
+#user_panel {
+    display: none;
+}
+
+#username {
+    color: white;
+    margin: auto 8px;
 }

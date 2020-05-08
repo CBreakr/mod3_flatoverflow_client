@@ -8,10 +8,13 @@ const questionView = document.querySelector('#question-view')
 const tagInput = document.getElementById("tags-input");
 const tagDataList = document.getElementById("taglist");
 const tagDisplay = document.getElementById("tag_list_display");
+const tag_input_container = document.getElementById("tag_input_container");
 
 const questionEndpoint = 'http://localhost:3000/questions'
 const tagsEndpoint = 'http://localhost:3000/tags'
 const questionTagsEndpoint = 'http://localhost:3000/question_tags'
+
+const TAG_LIMIT = 4;
 
 const headers = {
   'Content-Type': 'application/json',
@@ -34,6 +37,7 @@ questionForm.addEventListener('submit', event => {
     // postTags(parseTags(tagsInput.value))
     addTagsToQuestion(question);
     postQuestion(question);
+    clearAllQuestionFormInputs();
   } 
   else {
     alert('You need to be logged in to ask a question')
@@ -52,6 +56,7 @@ questionForm.addEventListener("click", event => {
     if(parent.className.indexOf("delete-tag") > -1){
       console.log("delete tag");
       parent.parentNode.remove();
+      setTagDisplayVisibility();
     }
   }
   else if(event.target.id === "add_tag"){
@@ -175,6 +180,19 @@ function moveTagToDisplay(){
     }
 
     tagInput.value = "";
+
+    setTagDisplayVisibility();
+  }
+}
+
+//
+//
+function setTagDisplayVisibility(){
+  if(tagDisplay.children.length >= TAG_LIMIT){
+    tag_input_container.style.display = "none";
+  }
+  else{
+    tag_input_container.style.display = "block";
   }
 }
 
@@ -222,6 +240,8 @@ function addTagsToQuestion(question){
   if(tags.length){
     question.tags = tags;
   }
+
+  tagDataList.innerHTML = "";
 }
 
 function fillTagsDataList(){
@@ -247,4 +267,9 @@ function appendIndividualTag(tag){
   option.value = tag.text;
   option.dataset.id = tag.id;
   tagDataList.append(option);
+}
+
+function clearAllQuestionFormInputs(){
+  tagDisplay.innerHTML = "";
+  questionForm.reset();
 }

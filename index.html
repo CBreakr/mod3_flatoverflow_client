@@ -22,33 +22,6 @@
       </div>
     </div>
     <div class="bottom inner left-bottom">
-      <div id="sidebar" style="display:none;">
-        <div id="trending_tags">
-          Trending Tags<br />
-          <ul id="trending_tags_list"></ul>
-        </div>
-        
-        <div id="testing-questions">
-          Questions<br />
-        </div>
-
-        <div id="followees-div">
-          Following<br>
-        </div>
-        SIDEBAR<br />
-        SIDEBAR<br />
-        SIDEBAR<br />
-        SIDEBAR
-        <div>
-          NOTIFICATIONS
-          <div id="refresh_notifications">
-            REFRESH
-          </div>
-          <ul id="notifications">
-          </ul>
-        </div>  
-      </div>
-    </div>
       <div id="disclaimer">
         <p>
           Note that this login is not yet secure because there is no password.
@@ -60,11 +33,33 @@
           Do not refresh the page!
         </p>
       </div>
+      <div id="sidebar" style="display:none;">
+        <div id="trending_tags">
+          Trending Tags<br />
+          <ul id="trending_tags_list"></ul>
+        </div>
+
+        <div id="followees-div">
+          Following
+        </div>
+      </div>
     </div>
   </div>
   <div id="right" class="column is-four-fifths">
       <div class="top-right">
-        <div class="top_header primary">
+        <div class="top_header primary right_header">
+          <span id="user_panel">
+            <span id="notification_bell" class="notification_bell_empty">
+              <i class="fas fa-bell"></i>
+              <ul id="notifications">
+              </ul>
+            </span>
+            <span id="username">
+            </span>
+            <span>
+              <button id="logout_button">Logout</button>
+            </span>
+          </span>
         </div>
         <div class="top-content">
           <div id="left-subheader" style="display:none;">
@@ -142,11 +137,13 @@
                 <br>
                 <div id="tag_list_display"></div>
                 <br />
-                <input id="tags-input" list="taglist"></input>
-                <datalist id="taglist">
-                </datalist>
-                <button type="button" id="add_tag">Add Tag</button>
-                <br><br>
+                <div id="tag_input_container">
+                  <input id="tags-input" list="taglist"></input>
+                  <datalist id="taglist">
+                  </datalist>
+                  <button type="button" id="add_tag">Add Tag</button>
+                  <br><br>
+                </div>
                 <button class="large_button">Post Question</button>
               </form>
             </div>            
