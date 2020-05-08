@@ -385,3 +385,29 @@ LOGOUT
     color: white;
     margin: auto 8px;
 }
+
+/*
+UPVOTES
+*/
+
+td {
+    padding: 4px;
+}
+
+/*
+FOLLOWING
+*/
+
+#followees-list {
+    list-style: none;
+}
+
+#followees-list li {
+    background-color: white;
+    border: 1px solid var(--border-dark);
+}
+
+#followees-list li:hover {
+    background-color: var(--border-dark);
+    color: black;
+}

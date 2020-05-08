@@ -9,7 +9,6 @@ let currentQuestion = null;
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
-const followeesDiv = document.getElementById('followees-div')
 const questionURL = "http://localhost:3000/questions";
 
 document.addEventListener("DOMContentLoaded", event => {
@@ -251,14 +250,6 @@ function followUser(userID) {
         console.log(follow)
         addUserToSidebar(follow)
     })
-}
-
-//append followed users to sidebar
-function addUserToSidebar(followObj) {
-    let li = document.createElement('li')
-    li.dataset.user_id = followObj.followee.id
-    li.innerText = followObj.followee.name
-    followeesDiv.append(li)
 }
 
 function replaceExistingPreview(){
