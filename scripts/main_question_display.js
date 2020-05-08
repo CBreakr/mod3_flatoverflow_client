@@ -104,25 +104,15 @@ function createBasicQuestionElement(question, already_upvoted = null){
     let upvoteClass = getUpvoteClass((question.question_upvotes || already_upvoted), "question-upvote");
 
     div.innerHTML = `
-<<<<<<< HEAD
         <span class="basic-inner">
             <span>
                 <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
                 <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
                 &nbsp; &nbsp;
-                <span class="author">${username}</span>
+                <span class="author" data-userID="${question.user_id}">${username}</span>
             </span>
             </span>
             <span class="basic_question_title">${question.title}</span> 
-=======
-        <span>
-            <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
-            <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
-            &nbsp; &nbsp;
-            <span class="author" data-userID="${question.user_id}">${username}</span>
-        </span>
-        <span class="basic_question_title">${question.title}</span> 
->>>>>>> 0438e61e1a95ad77ca34193d09896f732836c8e7
         <span>${showTagDisplay(question.tags)}</span>
     `;
 

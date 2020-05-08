@@ -63,9 +63,7 @@ function showMainQuestionView(){
     question_detail.style.display = "none";
     button_bar.style.display = "flex";
     back_to_questions.style.display = "none";
-<<<<<<< HEAD
     reload_questions.style.display = "inline";
-=======
 
     let showLeaderboard = document.getElementById('leaderboard-div')
     showLeaderboard.style.display = 'none'
@@ -101,7 +99,6 @@ function showLeaderboardView(){
 
     let showLeaderboard = document.getElementById('leaderboard-div')
     showLeaderboard.style.display = 'block'
->>>>>>> 0438e61e1a95ad77ca34193d09896f732836c8e7
 }
 
 function showQuestionFormView(){
