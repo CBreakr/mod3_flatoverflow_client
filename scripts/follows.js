@@ -44,12 +44,12 @@ followeesList.addEventListener('click', event => {
       if(parent.className.indexOf("delete-tag") > -1){
         console.log("delete follow");
         let followObj = {
-          id: parseInt(event.target.dataset.follow_id),
+          id: parseInt(parent.dataset.follow_id),
           follower_id: currentUser.id,
-          followee_id: event.target.parentNode.dataset.user_id
+          followee_id: parent.parentNode.dataset.user_id
         }
     
-        fetch(`${baseEndpoint}/follows/${event.target.dataset.follow_id}`, {
+        fetch(`${baseEndpoint}/follows/${parent.dataset.follow_id}`, {
           method: 'DELETE',
           headers,
           body: JSON.stringify(followObj)
