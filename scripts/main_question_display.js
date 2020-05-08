@@ -245,7 +245,7 @@ function followUser(userID) {
         followee_id: userID
     }
 
-    fetch('http://localhost:3000/follows', {
+    fetch(`${baseEndpoint}/follows`, {
         method: 'POST',
         headers, 
         body: JSON.stringify(follow)
