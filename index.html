@@ -34,28 +34,32 @@
         </p>
       </div>
       <div id="sidebar" style="display:none;">
-        <div id="trending_tags">
-          Trending Tags<br />
-          <ul id="trending_tags_list"></ul>
-        </div>
-
-        <div id="followees-div">
-          Following
-          <ul id="followees-list">
-
-          </ul>
-        </div>
-
-        <div id="leaderboard-div">
-          Upvotes Leaderboard<br>
-          <table style="width:100%">
-            <thead>
-              <th>User</th>
-              <th>Upvote Score</th>
-            </thead>
-            <tbody id="tbody">
-            </tbody>
-          </table>
+        <div id="sidebar-flex">
+          <div id="trending_tags">
+            <div class="li-header">Trending Tags</div>
+            <ul id="trending_tags_list"></ul>
+          </div>
+  
+          <div id="followees-div">
+            <div class="li-header">Following</div>
+            <ul id="followees-list">
+  
+            </ul>
+          </div>
+  
+          <!--
+            <div id="leaderboard-div">
+              Upvotes Leaderboard<br>
+              <table style="width:100%">
+                <thead>
+                  <th>User</th>
+                  <th>Upvote Score</th>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+              </table>
+            </div>
+          -->
         </div>
       </div>
     </div>
@@ -83,6 +87,9 @@
                 <i class="fas fa-angle-double-left"></i>
               </span>              
               Questions
+              <span id="reload_questions">
+                <i class="fas fa-sync"></i>
+              </span>
             </h1>
           
             <div id="button_bar">

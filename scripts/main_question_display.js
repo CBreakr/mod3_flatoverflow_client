@@ -6,6 +6,8 @@ let currentPreview = null;
 
 let currentQuestion = null;
 
+const reload_questions = document.getElementById("reload_questions");
+
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", event => {
     });
 
     back_to_questions.addEventListener("click", getQuestions);
+    reload_questions.addEventListener("click", getQuestions);
 });
 
 //

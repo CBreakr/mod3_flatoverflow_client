@@ -63,6 +63,7 @@ function showMainQuestionView(){
     question_detail.style.display = "none";
     button_bar.style.display = "flex";
     back_to_questions.style.display = "none";
+    reload_questions.style.display = "inline";
 }
 
 function showQuestionFormView(){
@@ -80,6 +81,7 @@ function showQuestionFormView(){
     question_detail.style.display = "none";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";
+    reload_questions.style.display = "none";
 
     // question_title.style.display = "block";
 
@@ -102,6 +104,7 @@ function showQuestionDetailView(){
     question_detail.style.display = "block";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";
+    reload_questions.style.display = "none";
 
     // question_title.style.display = "block";
 }

@@ -139,7 +139,7 @@ li {
 
 #button_bar{
     margin-right: 12px;
-    margin-left: 8px;
+    margin-left: 12px;
     display: flex;
     justify-content: space-between;
 }
@@ -205,6 +205,18 @@ button:hover {
 }
 
 #back_to_questions:hover {
+    color: var(--primary);
+}
+
+#reload_questions {
+    transition: var(--transition_time);
+    font-size: 1.8rem;
+    position: relative;
+    top: -4px;
+    margin-left: 4px;
+}
+
+#reload_questions:hover {
     color: var(--primary);
 }
 
@@ -314,6 +326,7 @@ input, textarea {
 }
 
 .tag_link {
+    padding-left: 4px;
     transition: var(--transition_time);
 }
 
@@ -403,11 +416,28 @@ FOLLOWING
 }
 
 #followees-list li {
-    background-color: white;
+    background-color: var(--light-gray);
     border: 1px solid var(--border-dark);
+    padding: 2px;
+    padding-left: 4px;
+    color: var(--primary);
 }
 
 #followees-list li:hover {
-    background-color: var(--border-dark);
-    color: black;
+    background-color: var(--main-hover);
+}
+
+/*
+SIDEBAR
+*/
+
+#sidebar-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.li-header {
+    margin: 12px 0 2px 8px;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
 }
