@@ -1,19 +1,25 @@
 function getTotalQuestionUpvotes(id) {
+  let score = []
   fetch(`http://localhost:3000/questions/upvotes/${id}`)
   .then(resp => resp.json())
-  .then(score => {
-    console.log(score)
-    return score
+  .then(data => {
+    console.log(data, 'questionupvotes')
+    score.push(data)
   })
+  console.log(score, 'logged the score')
+  return score
 }
 
 function getTotalCommentUpvotes(id) {
+  let score = []
   fetch(`http://localhost:3000/comments/upvotes/${id}`)
   .then(resp => resp.json())
   .then(data => {
-    console.log(data)
-    return data
+    console.log(data, 'commentupvotes')
+    score.push(data)
   })
+  console.log(score, 'by adding the sucker')
+  return score
 }
 
 function renderLeaderBoardUsers() {
@@ -26,11 +32,12 @@ function renderLeaderBoardUsers() {
  
   data.forEach((user) => {
     
-
+  
     let questionScore = getTotalQuestionUpvotes(user.id)
     let commentScore = getTotalCommentUpvotes(user.id)
-    // console.log(questionScore, commentScore)
+  
     let total = setTimeout((questionScore + commentScore), 1000)
+
     user = {
       username: user.name, 
       score: total
@@ -61,6 +68,3 @@ function renderLeaderBoardUsers() {
 
   })
 }
-
-renderLeaderBoardUsers()
- 

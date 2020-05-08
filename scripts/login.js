@@ -33,6 +33,14 @@ loginForm.addEventListener('submit', event => {
       //used to keep track of user for upvote clicks
       userTracker.user = match
 
+      //will fetch scores for comments marked as the answer, upvoted, and questions upvoted
+      let questionsScore = getTotalQuestionUpvotes(currentUser.id)
+      console.log(questionsScore, 'be sure about this', questionsScore)
+      let commentsScore = getTotalCommentUpvotes(currentUser.id)
+      console.log(commentsScore, 'tell me about it')
+
+      // console.log(questionsScore, 'did it return something???')
+
       getQuestions()
       console.log(currentUser)
       //will fetch current followees for user upon logging in
