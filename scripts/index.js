@@ -3,6 +3,8 @@ console.log('index.js loaded')
 // const baseEndpoint = "http://localhost:3000";
 const baseEndpoint = "https://flatoverflow-api.herokuapp.com";
 
+console.log(baseEndpoint);
+
 createNotificationWebsocketConnection();
 
 function showInitialView(){

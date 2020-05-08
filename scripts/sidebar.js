@@ -3,6 +3,8 @@ console.log('sidebar.js loaded')
 const trendingTagsEndpoint = `${baseEndpoint}/tags/trending`
 const questionFilterEndpoint = `${baseEndpoint}/questions/filter`
 
+console.log(trendingTagsEndpoint);
+
 let trendingList = document.getElementById('trending_tags_list')
 
 function getPopularTags() {
