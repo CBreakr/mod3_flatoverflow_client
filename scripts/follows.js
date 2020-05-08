@@ -22,17 +22,7 @@ function getFollowees(id) {
 function renderFollowees(followees) {
   followeesList.innerHTML = "";
   followees.forEach(followeeObj => {
-    let li = document.createElement('li')
-    li.dataset.user_id = followeeObj.followee.id
-    li.innerText = followeeObj.followee.name
-    
-    let deleteBtn = document.createElement("button");
-    deleteBtn.innerText = 'Unfollow'
-    deleteBtn.dataset.follow_id = followeeObj.id
-
-    li.append(deleteBtn)
-
-    followeesList.append(li)
+    addUserToSidebar(followeeObj);
   })
 }
 
@@ -42,25 +32,36 @@ followeesList.addEventListener('click', event => {
     fetch(`${myFilterQuestionEndpoint}/${event.target.dataset.user_id}`)
     .then(resp => resp.json())
     .then(renderAllQuestions)
-  } else if (event.target.tagName === 'BUTTON') {
-
-    let followObj = {
-      id: parseInt(event.target.dataset.follow_id),
-      follower_id: currentUser.id,
-      followee_id: event.target.parentNode.dataset.user_id
-    }
-
-    fetch(`http://localhost:3000/follows/${event.target.dataset.follow_id}`, {
-      method: 'DELETE',
-      headers,
-      body: JSON.stringify(followObj)
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      console.log(data)
-      getFollowees(currentUser.id)
-    })
   } 
+  else {
+    const classes = event.target.className;
+    if(typeof classes !== "string"){
+      let parent = event.target.parentNode;
+      if(parent.tagName === "svg"){
+        parent = parent.parentNode;
+      }
+
+      if(parent.className.indexOf("delete-tag") > -1){
+        console.log("delete follow");
+        let followObj = {
+          id: parseInt(event.target.dataset.follow_id),
+          follower_id: currentUser.id,
+          followee_id: event.target.parentNode.dataset.user_id
+        }
+    
+        fetch(`http://localhost:3000/follows/${event.target.dataset.follow_id}`, {
+          method: 'DELETE',
+          headers,
+          body: JSON.stringify(followObj)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+          console.log(data)
+          getFollowees(currentUser.id)
+        })
+      }
+    }
+  }
 })
 
 mainQuestionViewDiv.addEventListener('click', event => {
@@ -90,16 +91,26 @@ mainQuestionViewDiv.addEventListener('click', event => {
 })
 
 //append followed users to sidebar
-function addUserToSidebar(followObj) {
+function addUserToSidebar(followeeObj) {
 
   let li = document.createElement('li')
-  li.dataset.user_id = followObj.followee.id
-  li.innerText = followObj.followee.name
+  li.className = "follow-item"
+  li.dataset.user_id = followeeObj.followee.id
+  const span = document.createElement("span");
+  span.innerText = followeeObj.followee.name
 
-  let deleteBtn = document.createElement("button");
-  deleteBtn.innerText = 'Unfollow'
-  deleteBtn.dataset.follow_id = followObj.id
-  li.append(deleteBtn)
+  li.append(span);
+  
+  // let deleteBtn = document.createElement("button");
+  // deleteBtn.innerText = 'Unfollow'
+  // deleteBtn.dataset.follow_id = followeeObj.id
+
+  const deleteSpan = document.createElement("span");
+  deleteSpan.innerHTML = `<i class="far fa-times-circle"></i>`;
+  deleteSpan.dataset.follow_id = followeeObj.id
+  deleteSpan.className = "delete-tag";
+
+  li.append(deleteSpan)
 
   followeesList.append(li)
 }

@@ -444,6 +444,11 @@ FOLLOWING
     border-color: black;
 }
 
+.follow-item {
+    display: flex;
+    justify-content: space-between;
+}
+
 /*
 SIDEBAR
 */
