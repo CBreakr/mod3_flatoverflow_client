@@ -16,9 +16,10 @@ function displayQuestionDetails(questionDetail){
     questionDiv.className = questionDiv.className.replace("bright", " answer");
   }
 
+  console.log(questionDetail, 'HEYYYYYYYYYYYYY')
   questionDiv.innerHTML = `
     <div>
-    ${createUpvoteCounter(questionDetail)} &nbsp;&nbsp; <span class="title is-4">${questionDetail.title}</span>&nbsp;-&nbsp;<span class="author">${questionDetail.user.name}</span></div>
+    ${createUpvoteCounter(questionDetail)} &nbsp;&nbsp; <span class="title is-4">${questionDetail.title}</span>&nbsp;-&nbsp;<span id="${questionDetail.user_id}"class="author">${questionDetail.user.name}</span></div>
     <p id="question-content-text" class="boxed text">${questionDetail.text}</p>
     <br>
     <div id="question-comments">

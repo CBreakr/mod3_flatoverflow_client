@@ -3,6 +3,9 @@ console.log('follows.js loaded')
 const followeesList = document.getElementById('followees-list');
 const myFilterQuestionEndpoint = 'http://localhost:3000/questions/myfilter/'
 const mainQuestionViewDiv = document.querySelector('div[class="bottom inner')
+const questionDetailViewDiv = document.getElementById('question-details')
+
+console.log(questionDetailViewDiv, 'inside follow.js logging this element!')
 
 function getFollowees(id) {
   fetch(`http://localhost:3000/follows/filter/${id}`)
@@ -29,6 +32,7 @@ function renderFollowees(followees) {
     followeesList.append(li)
   })
 }
+
 
 followeesList.addEventListener('click', event => {
   if (event.target.tagName === 'LI') {
@@ -58,6 +62,8 @@ followeesList.addEventListener('click', event => {
 
 mainQuestionViewDiv.addEventListener('click', event => {
   if (event.target.className === 'author') {
+
+    console.log(event.target, 'MOVE FORWARD')
   
     let ul = document.getElementById('followees-list')
     let isPresent = false
@@ -69,7 +75,7 @@ mainQuestionViewDiv.addEventListener('click', event => {
       }
     }) 
 
-    let followeeID = event.target.dataset.userid
+    let followeeID = event.target.dataset.userid || event.target.id
 
     if(currentUser.id !== parseInt(followeeID)){
         if (!isPresent) {
@@ -85,7 +91,8 @@ mainQuestionViewDiv.addEventListener('click', event => {
 
 //append followed users to sidebar
 function addUserToSidebar(followObj) {
-  // console.log(followObj, 'here I ammmmmmmmm')
+  console.log(followObj, 'INSIDE ADDUSERTOSIDEBAR FOR QUESTION DETAILS')
+
   let li = document.createElement('li')
   li.dataset.user_id = followObj.followee.id
   li.innerText = followObj.followee.name
