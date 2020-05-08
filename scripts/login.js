@@ -28,18 +28,10 @@ loginForm.addEventListener('submit', event => {
     })
 
     if (match) {
-      currentUser = match
-
       //used to keep track of user for upvote clicks
       userTracker.user = match
 
-      getQuestions()
-      console.log(currentUser)
-      //will fetch current followees for user upon logging in
-      getFollowees(currentUser.id)
-      getNotifications();
-
-      setUserDisplay();
+      login(match);
     } else { 
       alert('you don\'t have an account')
     }
@@ -48,6 +40,17 @@ loginForm.addEventListener('submit', event => {
     loginForm.reset();
   })
 })
+
+function login(match){
+  currentUser = match
+  getQuestions()
+  console.log(currentUser)
+  //will fetch current followees for user upon logging in
+  getFollowees(currentUser.id)
+  getNotifications();
+
+  setUserDisplay();
+}
 
 function validateUser(userObj) {
   return loginInput.value === userObj.name

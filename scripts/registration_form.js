@@ -1,14 +1,14 @@
 console.log('registration_form.js loaded')
 
 const usersEndpoint = 'https://flatoverflow-api.herokuapp.com/users'
-const form = document.querySelector('#user-registration-form')
+const registrationForm = document.querySelector('#user-registration-form')
 const usernameInput = document.querySelector('#username-input')
 const dropdown = document.querySelector('#is_coach-dropdown')
 
 const userEndpoint = 'http://localhost:3000/users' 
 
 
-form.addEventListener('submit', event => {
+registrationForm.addEventListener('submit', event => {
   event.preventDefault()
 
   const username = usernameInput.value
@@ -37,5 +37,9 @@ function postUser(userObj) {
     body: JSON.stringify(userObj)
   })
   .then(resp => resp.json())
-  .then(console.log)
+  .then(data => {
+    registrationForm.reset();
+    login(data);
+  })
+  .catch(err => console.log("err", err));
 }
