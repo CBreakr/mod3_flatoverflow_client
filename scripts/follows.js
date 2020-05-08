@@ -2,10 +2,10 @@ console.log('follows.js loaded')
 
 const followeesList = document.getElementById('followees-list');
 
-const myFilterQuestionEndpoint = 'http://localhost:3000/questions/myfilter/'
+const myFilterQuestionEndpoint = `${baseEndpoint}/questions/myfilter/`;
 
 function getFollowees(id) {
-  fetch(`http://localhost:3000/follows/filter/${id}`)
+  fetch(`${baseEndpoint}/follows/filter/${id}`)
   .then(resp => resp.json())
   .then(followeesObj => {
     console.log(followeesObj)

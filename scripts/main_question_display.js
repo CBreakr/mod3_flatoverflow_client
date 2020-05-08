@@ -11,7 +11,7 @@ const reload_questions = document.getElementById("reload_questions");
 //used to display question in detailed view
 //set within getSingleQuestionWithCallback 
 
-const questionURL = "http://localhost:3000/questions";
+const questionURL = `${baseEndpoint}/questions`;
 
 document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.getElementById("add_question_button");

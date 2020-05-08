@@ -1,5 +1,5 @@
 
-const notificationEndpoint = "http://localhost:3000/notifications";
+const notificationEndpoint = `${baseEndpoint}/notifications`;
 
 const notificationHeaders = {
     "content-type": "application/json",

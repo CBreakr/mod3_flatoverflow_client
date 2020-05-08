@@ -1,5 +1,6 @@
 
-const webSocketUrl = 'ws://localhost:3000/cable';
+// const webSocketUrl = 'ws://localhost:3000/cable';
+const webSocketUrl = 'wss://flatoverflow-api.herokuapp.com/cable';
 
 let commentSocket = null;
 

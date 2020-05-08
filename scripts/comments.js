@@ -9,7 +9,7 @@ const commentHeaders = {
     "accept": "application/json"
 };
 
-const commentEndpoint = "http://localhost:3000/comments";
+const commentEndpoint = `${baseEndpoint}/comments`;
 
 document.addEventListener("DOMContentLoaded", event => {
     commentForm = document.getElementById("comment_form");

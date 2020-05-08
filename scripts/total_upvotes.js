@@ -1,5 +1,5 @@
 function getTotalQuestionUpvotes(id) {
-  fetch(`http://localhost:3000/questions/upvotes/${id}`)
+  fetch(`${baseEndpoint}/questions/upvotes/${id}`)
   .then(resp => resp.json())
   .then(score => {
     console.log(score)
@@ -8,13 +8,13 @@ function getTotalQuestionUpvotes(id) {
 }
 
 function getTotalCommentUpvotes(id) {
-  fetch(`http://localhost:3000/comments/upvotes/${id}`)
+  fetch(`${baseEndpoint}/comments/upvotes/${id}`)
   .then(resp => resp.json())
   .then(console.log)
 }
 
 function renderLeaderBoardUsers() {
-  fetch('http://localhost:3000/users').then(resp => resp.json()).then(data => { let totalUsers = data.length
+  fetch(`${baseEndpoint}/users`).then(resp => resp.json()).then(data => { let totalUsers = data.length
 
   let leaderboardDiv = document.getElementById('tbody')
 

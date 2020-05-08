@@ -1,7 +1,7 @@
 let upvoteClickTracker;
 let userTracker = {questions: []}
-const questionUpvotesEndpoint = 'http://localhost:3000/question_upvotes'
-const commentUpvotesEndpoint = 'http://localhost:3000/comment_upvotes'
+const questionUpvotesEndpoint = `${baseEndpoint}/question_upvotes`
+const commentUpvotesEndpoint = `${baseEndpoint}/comment_upvotes`
 
 // let upvoteCounter = null;
 
