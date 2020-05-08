@@ -59,7 +59,7 @@ function displayQuestionDetails(questionDetail){
   }
 
   showQuestionDetailView()
-  renderAllComments(questionDetail.reverse_comments);
+  renderAllComments(questionDetail.comments);
 }
 
 function createUpvoteCounter(questionDetail){

@@ -274,6 +274,14 @@ input:focus, textarea:focus {
     justify-content: space-between;
 }
 
+/* .basic_question_title{
+    margin-left: 20px;
+}
+
+.basic-inner {
+    display:flex;
+} */
+
 .author {
     color: var(--primary);
     text-shadow: 1px 1px white;
@@ -421,10 +429,12 @@ FOLLOWING
     padding: 2px;
     padding-left: 4px;
     color: var(--primary);
+    transition: var(--transition_time);
 }
 
 #followees-list li:hover {
     background-color: var(--main-hover);
+    border-color: black;
 }
 
 /*

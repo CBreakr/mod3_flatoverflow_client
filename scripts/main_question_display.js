@@ -103,13 +103,15 @@ function createBasicQuestionElement(question, already_upvoted = null){
     let upvoteClass = getUpvoteClass((question.question_upvotes || already_upvoted), "question-upvote");
 
     div.innerHTML = `
-        <span>
-            <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
-            <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
-            &nbsp; &nbsp;
-            <span class="author">${username}</span>
-        </span>
-        <span class="basic_question_title">${question.title}</span> 
+        <span class="basic-inner">
+            <span>
+                <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
+                <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
+                &nbsp; &nbsp;
+                <span class="author">${username}</span>
+            </span>
+            </span>
+            <span class="basic_question_title">${question.title}</span> 
         <span>${showTagDisplay(question.tags)}</span>
     `;
 
@@ -149,7 +151,7 @@ function createPreviewQuestionElement(question){
                 ${question.question_upvotes.length}
             </span> 
             <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span> 
-            &nbsp; &nbsp; ${question.reverse_comments.length} comments
+            &nbsp; &nbsp; ${question.comments.length} comments
             &nbsp; &nbsp; ${showTagDisplay(question.tags)}
             &nbsp; &nbsp; ${viewQuestionButton(question)}
         </p>

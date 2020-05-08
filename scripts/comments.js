@@ -60,6 +60,9 @@ function prependNewComment(comment){
 
 function appendComment(comment, markNew = false){
     const li = document.createElement("li");
+    if(markNew){
+        li.className = "new-element";
+    }
     li.append(createCommentElement(comment));
     commentList.append(li);
 }
@@ -108,7 +111,8 @@ function submitComment(event){
         if(comment.is_answer){
             alreadyAnswered = true;
         }
-        prependNewComment(data);
+        // prependNewComment(data);
+        appendComment(data, true);
     })
     .catch(err => console.log("err", err));
 }
