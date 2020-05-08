@@ -355,6 +355,13 @@ NOTIFICATION
 .notification_bell_full {
     position: relative;
     color: orange;
+    animation: flash 1s forwards;
+}
+
+@keyframes flash {
+    0%   { color: black; }
+    50% { color: white; }
+    100%  { color: orange; }
 }
 
 .notification_bell_full:hover #notifications {

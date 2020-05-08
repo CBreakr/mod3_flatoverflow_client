@@ -1,5 +1,7 @@
 console.log('index.js loaded')
 
+createNotificationWebsocketConnection();
+
 function showInitialView(){
     // hide sidebar content
     // show disclaimer

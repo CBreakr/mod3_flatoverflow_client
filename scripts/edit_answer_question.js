@@ -62,7 +62,7 @@ function displayQuestionDetails(questionDetail){
   renderAllComments(questionDetail.comments);
 
   // create the websocket connection
-  createChatRoomWebsocketConnection(currentQuestion.id);
+  createCommentWebsocketConnection(currentQuestion.id);
 }
 
 function createUpvoteCounter(questionDetail){

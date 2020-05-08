@@ -14,7 +14,9 @@ let currentQuestionId = null;
 //
 //
 // Opens a websocket connection to a specific Chat Room stream
-function createChatRoomWebsocketConnection(questionId) {
+function createCommentWebsocketConnection(questionId) {
+
+    console.log("");
 
     if(commentSocket){
         cancelCommentSocket();
@@ -27,7 +29,7 @@ function createChatRoomWebsocketConnection(questionId) {
 
     // When the connection is 1st created, this code runs subscribing the clien to a specific chatroom stream in the ChatRoomChannel
     commentSocket.onopen = function(event) {
-        console.log('WebSocket is connected.', commentSocket);
+        console.log('COMMENT WebSocket is connected.', commentSocket);
 
         const msg = {
             command: 'subscribe',
@@ -56,11 +58,11 @@ function createChatRoomWebsocketConnection(questionId) {
             return;
         } 
 
-        console.log("FROM RAILS: ", msg);
+        console.log("COMMENT FROM RAILS: ", msg);
         
         // Renders any newly created messages onto the page
         if (msg.message) {
-            console.log("from broadcast", msg);
+            console.log("COMMENT SOCKET MESSAGE", msg);
             if(msg.message.type === "new"){
                 appendComment(msg.message, true);
             }
@@ -102,3 +104,63 @@ function cancelCommentSocket(){
 // GET NOTIFICATIONS
 //
 //
+
+//
+//
+// Opens a websocket connection to a specific Chat Room stream
+function createNotificationWebsocketConnection() {
+    
+    // Creates the new websocket connection
+    const socket = new WebSocket(webSocketUrl);
+
+    // When the connection is 1st created, this code runs subscribing the clien to a specific chatroom stream in the ChatRoomChannel
+    socket.onopen = function(event) {
+        console.log('WebSocket is connected.', socket);
+
+        const msg = {
+            command: 'subscribe',
+            identifier: JSON.stringify({
+                channel: 'NotificationChannel'
+            }),
+        };
+
+        socket.send(JSON.stringify(msg));
+    };
+    
+    // When the connection is closed, this code is run
+    socket.onclose = function(event) {
+        console.log('WebSocket is closed.');
+        // returnToMainPage();
+    };
+
+    // When a message is received through the websocket, this code is run
+    socket.onmessage = function(event) {            
+        const response = event.data;
+        const msg = JSON.parse(response);
+        
+        // Ignores pings
+        if (msg.type === "ping" || msg.type === "confirm_subscription" || msg.type === "welcome") {
+            return;
+        } 
+
+        console.log("FROM RAILS: ", msg);
+        
+        // Renders any newly created messages onto the page
+        if (msg.message) {
+            console.log("from broadcast", msg);
+            console.log(msg.message);
+            console.log(msg.message.users);
+            if(currentUser && msg.message.users.some(id => {
+                console.log(id, currentUser.id);
+                return id === currentUser.id;
+            })){
+                getNotifications();
+            }
+        }
+    };
+    
+    // When an error occurs through the websocket connection, this code is run printing the error message
+    socket.onerror = function(error) {
+        console.log('WebSocket Error: ' + error);
+    };
+}

@@ -22,6 +22,9 @@ function getNotifications(){
     .then(res => res.json())
     .then(data => {
         renderAllNotifications(data);
+        if(data && data.length > 0){
+            notifyUser();
+        }
     })
     .catch(err => console.log("err", err));
 }
@@ -40,10 +43,15 @@ function removeNotification(id){
 
 function renderAllNotifications(data){
     if(data && data.length > 0){
-        notification_bell.className = "notification_bell_full";
+        notification_bell.className = "notification_bell_empty";
         data.forEach(notification => {
             renderNotification(notification);
         });
+
+        // flash it
+        setTimeout(() => {
+            notification_bell.className = "notification_bell_full";
+        }, 10);
     }
     else{
         notification_bell.className = "notification_bell_empty";
@@ -83,3 +91,26 @@ notificationContainer.addEventListener("click", event => {
         viewQuestion(event.target.dataset.question_id);
     }
 });
+
+function notifyUser(notice) {
+    // Let's check if the browser supports notifications
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var notification = new Notification(`FlatOverflow! ${notice}`);
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                var notification = new Notification(`FlatOverflow! ${notice}`);
+            }
+        });
+    }
+}
