@@ -10,7 +10,10 @@ function getTotalQuestionUpvotes(id) {
 function getTotalCommentUpvotes(id) {
   fetch(`http://localhost:3000/comments/upvotes/${id}`)
   .then(resp => resp.json())
-  .then(console.log)
+  .then(data => {
+    console.log(data)
+    return data
+  })
 }
 
 function renderLeaderBoardUsers() {
