@@ -58,12 +58,9 @@ followeesList.addEventListener('click', event => {
 
 mainQuestionViewDiv.addEventListener('click', event => {
   if (event.target.className === 'author') {
-    console.dir(event.target)
-
+  
     let ul = document.getElementById('followees-list')
     let isPresent = false
-
-    console.log(ul.children, "I'm gonna fix this shit")
 
     Array.from(ul.children).forEach(li => {
       let text = li.innerText.replace('Unfollow', '')
@@ -72,16 +69,11 @@ mainQuestionViewDiv.addEventListener('click', event => {
       }
     }) 
 
-    console.log(isPresent, "that's all folks")
-    console.dir(event.target)
-
     let followeeID = event.target.dataset.userid
-    console.log(followeeID)
 
     if(currentUser.id !== parseInt(followeeID)){
         if (!isPresent) {
-          console.log()
-            followUser(followeeID)
+          followUser(followeeID)
         } else {
             alert('you already follow this person!')
         }

@@ -96,6 +96,7 @@ function createBasicQuestionElement(question, already_upvoted = null){
     div.dataset.id = question.id;
     const upvotes = question.upvotes !== undefined ? question.upvotes : question.question_upvotes.length;
     const username = question.username || question.user.name;
+    // console.log(question, 'plus i am here')
 
     let upvoteClass = getUpvoteClass((question.question_upvotes || already_upvoted), "question-upvote");
 
@@ -104,7 +105,7 @@ function createBasicQuestionElement(question, already_upvoted = null){
             <span class="upvote-counter" data-id="${question.id}">${upvotes}</span> 
             <span class="${upvoteClass}"><i class="fas fa-chevron-up"></i></span>
             &nbsp; &nbsp;
-            <span class="author" data-userID="${question.user.id}">${username}</span>
+            <span class="author" data-userID="${question.user_id}">${username}</span>
         </span>
         <span class="basic_question_title">${question.title}</span> 
         <span>${showTagDisplay(question.tags)}</span>
