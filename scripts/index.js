@@ -101,6 +101,7 @@ function showLeaderboardView(){
     question_list.style.display = "none";
     question_form.style.display = "none";
     question_detail.style.display = "none";
+    reload_questions.style.display = "none";
     button_bar.style.display = "none";
     back_to_questions.style.display = "inline";
 
