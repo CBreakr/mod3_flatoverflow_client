@@ -47,7 +47,7 @@ body {
 } */
 
 .top-left {
-    flex-shink: 0;
+    /* flex-shink: 0; */
     padding-left: 4px;
 }
 
