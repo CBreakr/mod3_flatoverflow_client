@@ -16,14 +16,17 @@ const notification_bell = document.getElementById("notification_bell");
 
 console.log("NOTIFICATION CONTAINER", notificationContainer);
 
-function getNotifications(){
+function getNotifications(notify = true){
     notificationContainer.innerHTML = "";
     fetch(`${notificationEndpoint}/${currentUser.id}`)
     .then(res => res.json())
     .then(data => {
         renderAllNotifications(data);
         if(data && data.length > 0){
-            notifyUser(`${data.length} notifications!`);
+            if(notify){
+                const plural = data.length === 1 ? "" : "s";
+                notifyUser(`${data.length} notification${plural}!`);
+            }
         }
     })
     .catch(err => console.log("err", err));
@@ -36,7 +39,7 @@ function removeNotification(id){
         headers: notificationHeaders
     })
     .then(res => {
-        getNotifications();
+        getNotifications(false);
     })
     .catch(err => console.log("err", err));
 }
@@ -101,7 +104,7 @@ function notifyUser(notice) {
     // Let's check whether notification permissions have already been granted
     else if (Notification.permission === "granted") {
         // If it's okay let's create a notification
-        var notification = new Notification(`FlatOverflow! ${notice}`);
+        var notification = new Notification(`FlatOverflow: ${notice}`);
     }
 
     // Otherwise, we need to ask the user for permission
