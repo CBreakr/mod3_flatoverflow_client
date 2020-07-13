@@ -1,10 +1,7 @@
 function getTotalQuestionUpvotes(id) {
-<<<<<<< HEAD
   let score = []
-  fetch(`http://localhost:3000/questions/upvotes/${id}`)
-=======
+  // fetch(`http://localhost:3000/questions/upvotes/${id}`)
   fetch(`${baseEndpoint}/questions/upvotes/${id}`)
->>>>>>> websockets
   .then(resp => resp.json())
   .then(data => {
     console.log(data, 'questionupvotes')
@@ -15,12 +12,9 @@ function getTotalQuestionUpvotes(id) {
 }
 
 function getTotalCommentUpvotes(id) {
-<<<<<<< HEAD
   let score = []
-  fetch(`http://localhost:3000/comments/upvotes/${id}`)
-=======
+  // fetch(`http://localhost:3000/comments/upvotes/${id}`)
   fetch(`${baseEndpoint}/comments/upvotes/${id}`)
->>>>>>> websockets
   .then(resp => resp.json())
   .then(data => {
     console.log(data, 'commentupvotes')
